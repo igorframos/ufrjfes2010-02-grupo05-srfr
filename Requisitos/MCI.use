@@ -1,0 +1,72 @@
+-- Nome do Modelo
+
+model Fes
+
+-- Classes
+
+abstract class Pessoa
+attributes
+  primeiroNome : String
+  ultimoNome : String
+  idade : Integer
+  email : String
+  cpf : String
+  identidade : String
+
+operations
+  toString() : String = (self.primeiroNome).concat(' ').concat(self.ultimoNome)
+end
+
+
+class Cliente < Pessoa
+attributes
+  confiavel : Boolean
+end
+
+
+class Empregado < Pessoa
+attributes
+  admin : Boolean
+end
+
+
+class Cheque
+attributes
+  id : String
+  dataVencimento : String
+  comFundos : Boolean
+end
+
+
+-- Associações
+
+association InsereCheque between
+  Empregado[1] role inserindo
+  Cheque[1] role adicionado
+end
+
+association RegistraDeposito between
+  Empregado[1] role registrando
+  Cheque[1] role depositado
+end
+
+association Possui between
+  Cliente[1]
+  Cheque[0..*]
+end
+
+
+
+-- Restrições
+
+constraints
+
+
+context Pessoa
+inv Pessoa1:
+  primeiroNome.isDefined() and ultimoNome.isDefined() and idade > 0 and cpf.isDefined()
+
+  
+context Cheque
+inv Cheque1:
+  id.isDefined() and dataVencimento.isDefined()
