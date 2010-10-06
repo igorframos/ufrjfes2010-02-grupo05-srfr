@@ -38,6 +38,13 @@ attributes
 end
 
 
+class Relatorio
+attributes
+  id : String
+  tipo : String
+end
+
+
 -- Associações
 
 association InsereCheque between
@@ -55,7 +62,20 @@ association Possui between
   Cheque[0..*]
 end
 
+association RelatorioPorCliente between
+  Relatorio[1] role relatorioCliente
+  Cheque[0..*] role chequeCliente
+end
 
+association RelatorioPorCPF between
+  Relatorio[1] role relatorioCPF
+  Cheque[0..*] role chequeCPF
+end
+
+association RelatorioDevolvidos between
+  Relatorio[1] role relatorioDevolvidos
+  Cheque[0..*] role chequeDevolvido
+end
 
 -- Restrições
 
