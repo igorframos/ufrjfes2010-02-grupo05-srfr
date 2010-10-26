@@ -4,7 +4,17 @@ model Fes
 
 -- Classes
 
-abstract class Pessoa
+class Cliente
+attributes
+  cnpj : String
+  confiavel : Boolean
+  razaoSocial : String
+  responsavel : String
+  email : String
+end
+
+
+class Empregado
 attributes
   primeiroNome : String
   ultimoNome : String
@@ -12,20 +22,6 @@ attributes
   email : String
   cpf : String
   identidade : String
-
-operations
-  toString() : String = (self.primeiroNome).concat(' ').concat(self.ultimoNome)
-end
-
-
-class Cliente < Pessoa
-attributes
-  confiavel : Boolean
-end
-
-
-class Empregado < Pessoa
-attributes
   admin : Boolean
 end
 
@@ -82,8 +78,8 @@ end
 constraints
 
 
-context Pessoa
-inv Pessoa1:
+context Empregado
+inv Empregado1:
   primeiroNome.isDefined() and ultimoNome.isDefined() and idade > 0 and cpf.isDefined()
 
   
