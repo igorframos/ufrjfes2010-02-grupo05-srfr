@@ -9,12 +9,14 @@ attributes
   cnpj : String
   confiavel : Boolean
   razaoSocial : String
-  responsavel : String
+  contato : String
   email : String
+  operacoes_ativas : Integer
+  operacoes_realizadas : Integer
 end
 
 
-class Empregado
+class Usuario
 attributes
   primeiroNome : String
   ultimoNome : String
@@ -28,28 +30,30 @@ end
 
 class Cheque
 attributes
-  id : String
-  dataVencimento : String
-  comFundos : Boolean
-end
-
-
-class Relatorio
-attributes
-  id : String
-  tipo : String
+  numero : String
+  cpf : String
+  cnpj : String
+  data_desconto : Date
+  data_vencimento : Date
+  dias_a_decorrer : Integer
+  taxa_desconto : Float
+  valor_descontado : Float
+  taxa_efetiva : Float
+  receita : Float
+  vencido : Boolean
+  devolvido : Boolean
 end
 
 
 -- Associações
 
 association InsereCheque between
-  Empregado[1] role inserindo
+  Cliente[1] role inserindo
   Cheque[1] role adicionado
 end
 
 association RegistraDeposito between
-  Empregado[1] role registrando
+  Cliente[1] role registrando
   Cheque[1] role depositado
 end
 
@@ -58,28 +62,14 @@ association Possui between
   Cheque[0..*]
 end
 
-association RelatorioPorCliente between
-  Relatorio[1] role relatorioCliente
-  Cheque[0..*] role chequeCliente
-end
-
-association RelatorioPorCPF between
-  Relatorio[1] role relatorioCPF
-  Cheque[0..*] role chequeCPF
-end
-
-association RelatorioDevolvidos between
-  Relatorio[1] role relatorioDevolvidos
-  Cheque[0..*] role chequeDevolvido
-end
 
 -- Restrições
 
 constraints
 
 
-context Empregado
-inv Empregado1:
+context Cliente
+inv Cliente1:
   primeiroNome.isDefined() and ultimoNome.isDefined() and idade > 0 and cpf.isDefined()
 
   
