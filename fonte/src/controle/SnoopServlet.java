@@ -1,4 +1,4 @@
-package visao;
+package controle;
 
 import java.io.IOException;
 
@@ -14,7 +14,8 @@ public class SnoopServlet extends HttpServlet {
 		String clientBrowser =  "Not known!";	
 		if( userAgent != null)
 			clientBrowser = userAgent;
-		req.setAttribute("client.browser",clientBrowser );
+		//req.setAttribute("client.browser",clientBrowser );
+		req.setAttribute("client.browser", "Teste" );
 		req.getRequestDispatcher("/showBrowser.jsp").forward(req,resp);
 	}
 }
