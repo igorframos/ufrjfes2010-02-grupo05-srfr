@@ -8,20 +8,9 @@
 </head>
 <body>
 
-<h3>Inserir Cheque</h3>
-<br><br>
-<h4>Dados:</h4>
-
-<form action='InsereChequeServlet' method='POST'>
-	<p> Número:
-	<input type='text' name='numero'>
-	<p> CNPJ:
-	<input type='text' name='cnpj'>
-	<p>
-	<input type='submit' value='Inserir'>
-</form>
-
-<input type="submit" value="Voltar" onClick="this.form.action='index.jsp'">
+	<h3>Cheque não pode ser inserido!</h3>
+	<br>
+	<h3>Número já existente no BD ou cliente não confiável</h3>
 
 </body>
 </html>

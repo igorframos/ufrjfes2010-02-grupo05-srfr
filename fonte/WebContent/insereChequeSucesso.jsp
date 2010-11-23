@@ -9,6 +9,10 @@
 <body>
 
 	<h3> Cheque inserido com sucesso! </h3>
+	
+	<h4>CNPJ: <%= request.getAttribute("cnpjEmpresa")%></h4>
+	
+	<input type="submit" value="Voltar" onClick="this.form.action='index.jsp'">
 
 </body>
 </html>

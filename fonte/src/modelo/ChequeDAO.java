@@ -52,6 +52,10 @@ public class ChequeDAO {
 		
 		List filtrada = filtro.list();
 		
+		if(filtrada.size() == 0) {
+			return null;
+		}
+		
 		Cheque cheque = (Cheque) filtrada.get(0);
 		
 		sessao.getTransaction().commit();

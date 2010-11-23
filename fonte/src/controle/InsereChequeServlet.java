@@ -31,6 +31,33 @@ public class InsereChequeServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	}
+	
+	private boolean validaCliente(String CNPJ) {
+		
+		return true;
+	}
+	
+	private boolean validaNumero(String numero) {
+		
+		if(numero.equals("")) {
+			return false;
+		}
+		
+		try {
+			ChequeDAO dao = new ChequeDAO();
+			Cheque cheque = dao.filtraNumero(numero);
+			dao.encerra();
+			if(cheque == null) {
+				return true;
+			}
+			return false;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -40,21 +67,14 @@ public class InsereChequeServlet extends HttpServlet {
 		String numero = request.getParameter("numero");
 		String cnpj = request.getParameter("cnpj");
 		
-		System.out.println(numero);
-		System.out.println(cnpj);
-		
-		try {
-			ChequeDAO dao = new ChequeDAO();
-			Cheque cheque = dao.filtraNumero("1");
-			System.out.println(cheque.getCPF());
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		request.setAttribute("cnpjEmpresa", cnpj);
-		request.getRequestDispatcher("/insereChequeSucesso.jsp").forward(request, response);
-		
+		if( validaCliente(cnpj) && validaNumero(numero) ) {
+			// chamar inserirCheque...
+			
+			request.setAttribute("cnpjEmpresa", cnpj);
+			request.getRequestDispatcher("/insereChequeSucesso.jsp").forward(request, response);
+		} else {
+			request.getRequestDispatcher("/insereChequeFalha.jsp").forward(request, response);
+		}		
 	}
 
 }
