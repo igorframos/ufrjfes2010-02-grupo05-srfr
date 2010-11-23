@@ -12,8 +12,13 @@ public class Cheque {
 	private float valor_descontado;
 	private float receita;
 	private String CPF;
+	private String CNPJ;
 	private Boolean vencido;
-	private Boolean devolvido;
+	private int devolvido;
+	
+	public Cheque() {
+		
+	}
 	
 	public String getNumero() {
 		return numero;
@@ -75,11 +80,17 @@ public class Cheque {
 	public void setVencido(Boolean vencido) {
 		this.vencido = vencido;
 	}
-	public Boolean getDevolvido() {
+	public int getDevolvido() {
 		return devolvido;
 	}
-	public void setDevolvido(Boolean devolvido) {
+	public void setDevolvido(int devolvido) {
 		this.devolvido = devolvido;
+	}
+	public void setCNPJ(String cNPJ) {
+		CNPJ = cNPJ;
+	}
+	public String getCNPJ() {
+		return CNPJ;
 	}
 	
 	
