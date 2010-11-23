@@ -43,7 +43,7 @@ public class ChequeDAO {
 		return lista;
 	}
 	
-	public List filtraNumero(int numero) {
+	public Cheque filtraNumero(String numero) {
 		Session sessao = sessaoFactory.openSession();
 		sessao.beginTransaction();
 		
@@ -52,10 +52,12 @@ public class ChequeDAO {
 		
 		List filtrada = filtro.list();
 		
+		Cheque cheque = (Cheque) filtrada.get(0);
+		
 		sessao.getTransaction().commit();
 		sessao.close();
 		
-		return filtrada;
+		return cheque;
 	}
 	
 	public List filtraCPF(String cpf) {
@@ -74,29 +76,11 @@ public class ChequeDAO {
 		return filtrada;
 	}
 	
-	public Cheque encontraNumero(int numero) {
+	public void deleta(String numero) {
 		Session sessao = sessaoFactory.openSession();
 		sessao.beginTransaction();
 		
-		List lista = filtraNumero(numero);
-		
-		Cheque cheque = new Cheque();
-		
-		if(lista != null && lista.size() > 0) {
-			cheque = (Cheque) lista.get(0);
-		}
-		
-		sessao.getTransaction().commit();
-		sessao.close();
-		
-		return cheque;
-	}
-	
-	public void deleta(int numero) {
-		Session sessao = sessaoFactory.openSession();
-		sessao.beginTransaction();
-		
-		Cheque cheque = encontraNumero(numero);
+		Cheque cheque = filtraNumero(numero);
 		
 		sessao.delete(cheque);
 		
