@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import modelo.Cheque;
+import modelo.ChequeDAO;
+
 /**
  * Servlet implementation class InsereChequeServlet
  */
@@ -34,13 +37,20 @@ public class InsereChequeServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		System.out.println("passou aqui!");
-		
 		String numero = request.getParameter("numero");
 		String cnpj = request.getParameter("cnpj");
 		
 		System.out.println(numero);
 		System.out.println(cnpj);
+		
+		try {
+			ChequeDAO dao = new ChequeDAO();
+			Cheque cheque = dao.filtraNumero("1");
+			System.out.println(cheque.getCPF());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		request.setAttribute("cnpjEmpresa", cnpj);
 		request.getRequestDispatcher("/insereChequeSucesso.jsp").forward(request, response);
