@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="modelo">
+
+	<class name="Cheque" table="cheque">
+	
+		<id name="numero" column="numero" type="string" >
+			<generator class="assigned"/>
+		</id>
+		
+		<property name="CPF" column="cpf" />
+		<property name="CNPJ" column="cnpj" />
+		<property name="data_desconto" column="dataDesconto" />
+		<property name="data_vencimento" column="dataVencimento" />
+		<property name="valor_bruto" column="valorBruto" />
+		<property name="valor_descontado" column="valorDescontado" />
+		<property name="devolvido" />
+		<property name="receita" />
+	</class>
+	
+</hibernate-mapping>
