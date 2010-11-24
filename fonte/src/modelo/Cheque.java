@@ -6,11 +6,11 @@ public class Cheque {
 	private String numero;
 	private Date data_desconto;
 	private Date data_vencimento;
-	private float taxa_desconto;
-	private float taxa_efetiva;
-	private float valor_bruto;
-	private float valor_descontado;
-	private float receita;
+	private double taxa_desconto;
+	private double taxa_efetiva;
+	private double valor_bruto;
+	private double valor_descontado;
+	private double receita;
 	private String CPF;
 	private String CNPJ;
 	private Boolean vencido;
@@ -38,36 +38,6 @@ public class Cheque {
 	public void setData_vencimento(Date data_vencimento) {
 		this.data_vencimento = data_vencimento;
 	}
-	public float getTaxa_desconto() {
-		return taxa_desconto;
-	}
-	public void setTaxa_desconto(float taxa_desconto) {
-		this.taxa_desconto = taxa_desconto;
-	}
-	public float getTaxa_efetiva() {
-		return taxa_efetiva;
-	}
-	public void setTaxa_efetiva(float taxa_efetiva) {
-		this.taxa_efetiva = taxa_efetiva;
-	}
-	public float getValor_bruto() {
-		return valor_bruto;
-	}
-	public void setValor_bruto(float valor_bruto) {
-		this.valor_bruto = valor_bruto;
-	}
-	public float getValor_descontado() {
-		return valor_descontado;
-	}
-	public void setValor_descontado(float valor_descontado) {
-		this.valor_descontado = valor_descontado;
-	}
-	public float getReceita() {
-		return receita;
-	}
-	public void setReceita(float receita) {
-		this.receita = receita;
-	}
 	public String getCPF() {
 		return CPF;
 	}
@@ -91,6 +61,46 @@ public class Cheque {
 	}
 	public String getCNPJ() {
 		return CNPJ;
+	}
+
+	public double getTaxa_desconto() {
+		return taxa_desconto;
+	}
+
+	public void setTaxa_desconto(double taxa_desconto) {
+		this.taxa_desconto = taxa_desconto;
+	}
+
+	public double getTaxa_efetiva() {
+		return taxa_efetiva;
+	}
+
+	public void setTaxa_efetiva(double taxa_efetiva) {
+		this.taxa_efetiva = taxa_efetiva;
+	}
+
+	public double getValor_bruto() {
+		return valor_bruto;
+	}
+
+	public void setValor_bruto(double valor_bruto) {
+		this.valor_bruto = valor_bruto;
+	}
+
+	public double getValor_descontado() {
+		return valor_descontado;
+	}
+
+	public void setValor_descontado(double valor_descontado) {
+		this.valor_descontado = valor_descontado;
+	}
+
+	public double getReceita() {
+		return receita;
+	}
+
+	public void setReceita(double receita) {
+		this.receita = receita;
 	}
 	
 	

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="modelo">
+
+	<class name="Cliente" table="cliente">
+	
+		<id name="cnpj" column="cnpj" type="string" >
+			<generator class="assigned"/>
+		</id>
+		
+		<property name="nome" />
+		<property name="endereco" />
+		<property name="contato" />
+		<property name="confiavel" />
+		<property name="num_operacoes_realizadas" column="operacoes_realizadas" />
+		<property name="num_operacoes_atuais" column="operacoes_atuais" />
+		
+	</class>
+	
+</hibernate-mapping>

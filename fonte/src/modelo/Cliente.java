@@ -5,6 +5,7 @@ public class Cliente {
 	private String nome;
 	private String endereco;
 	private String contato;
+	private int confiavel;
 	private int num_operacoes_realizadas;
 	private int num_operacoes_atuais;
 	
@@ -43,6 +44,12 @@ public class Cliente {
 	}
 	public void setNum_operacoes_atuais(int num_operacoes_atuais) {
 		this.num_operacoes_atuais = num_operacoes_atuais;
+	}
+	public void setConfiavel(int confiavel) {
+		this.confiavel = confiavel;
+	}
+	public int getConfiavel() {
+		return confiavel;
 	}
 	
 	

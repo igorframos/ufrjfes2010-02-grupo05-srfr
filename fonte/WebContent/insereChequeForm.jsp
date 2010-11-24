@@ -15,13 +15,19 @@
 <form action='InsereChequeServlet' method='POST'>
 	<p> Número:
 	<input type='text' name='numero'>
-	<p> CNPJ:
+	<p> CPF Cheque:
+	<input type='text' name='cpf'>
+	<p> CNPJ Empresa:
 	<input type='text' name='cnpj'>
+	<p> Valor Bruto (XX.YY):
+	<input type='text' name='valorBruto'>
+	<p> Data de Vencimento (dd/mm/aaaa):
+	<input type='text' name='dataVencimento'>
 	<p>
 	<input type='submit' value='Inserir'>
 </form>
 
-<input type="submit" value="Voltar" onClick="this.form.action='index.jsp'">
+<a href="index.jsp">Home</a>
 
 </body>
 </html>

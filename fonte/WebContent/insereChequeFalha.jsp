@@ -8,9 +8,7 @@
 </head>
 <body>
 
-	<h3>Cheque não pode ser inserido!</h3>
-	<br>
-	<h3>Número já existente no BD ou cliente não confiável</h3>
+	<h4>Cheque não pode ser inserido!</h3>
 
 </body>
 </html>

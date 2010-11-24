@@ -60,34 +60,20 @@ public class ClienteDAO {
 		return filtrada;
 	}
 	
-	public List filtraCNPJ(String cnpj) {
+	public Cliente filtraCNPJ(String cnpj) {
 		Session sessao = sessaoFactory.openSession();
 		sessao.beginTransaction();
 		
 		Criteria filtro = sessao.createCriteria(Cliente.class);
-		//filtro.add(Restrictions.like("cnpj", cnpj));
 		filtro.add(Restrictions.idEq(cnpj));
-		filtro.addOrder(Order.desc("dataVencimento"));
 		
 		List filtrada = filtro.list();
 		
-		sessao.getTransaction().commit();
-		sessao.close();
-		
-		return filtrada;
-	}
-	
-	public Cliente encontraCNPJ(String cnpj) {
-		Session sessao = sessaoFactory.openSession();
-		sessao.beginTransaction();
-		
-		List lista = filtraCNPJ(cnpj);
-		
-		Cliente cliente = new Cliente();
-		
-		if(lista != null && lista.size() > 0) {
-			cliente = (Cliente) lista.get(0);
+		if(filtrada.size() == 0) {
+			return null;
 		}
+		
+		Cliente cliente = (Cliente) filtrada.get(0);
 		
 		sessao.getTransaction().commit();
 		sessao.close();
@@ -99,7 +85,7 @@ public class ClienteDAO {
 		Session sessao = sessaoFactory.openSession();
 		sessao.beginTransaction();
 		
-		Cliente cliente = encontraCNPJ(cnpj);
+		Cliente cliente = filtraCNPJ(cnpj);
 		
 		sessao.delete(cliente);
 		

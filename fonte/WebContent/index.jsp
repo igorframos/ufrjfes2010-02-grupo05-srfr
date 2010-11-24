@@ -8,8 +8,6 @@
 </head>
 <body>
 
-	<a href="snoop/showBrowser.jsp"> Show Browser </a>
-	<br><br>
 	<a href="insereChequeForm.jsp"> Inserir Cheque </a>
 	
 </body>

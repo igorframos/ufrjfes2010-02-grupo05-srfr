@@ -41,6 +41,7 @@
         <property name="show_sql">true</property>
 
         <mapping resource="Cheque.hbm.xml"/>
+		<mapping resource="Cliente.hbm.xml"/>
 
     </session-factory>
 
