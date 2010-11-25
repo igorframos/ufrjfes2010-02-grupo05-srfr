@@ -10,5 +10,9 @@
 
 	<a href="insereChequeForm.jsp"> Inserir Cheque </a>
 	
+	<br><br>
+	
+	<a href='ListaChequesServlet'> Listar Cheques </a>
+	
 </body>
 </html>
