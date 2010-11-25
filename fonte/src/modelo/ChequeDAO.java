@@ -35,7 +35,11 @@ public class ChequeDAO {
 		Session sessao = sessaoFactory.openSession();
 		sessao.beginTransaction();
 		
-		List lista = sessao.createQuery("from Cheque").list();
+		Criteria filtro = sessao.createCriteria(Cheque.class);
+		//filtro.addOrder(Order.asc("numero"));
+		filtro.addOrder(Order.asc("data_vencimento"));
+		
+		List lista = filtro.list();
 		
 		sessao.getTransaction().commit();
 		sessao.close();
