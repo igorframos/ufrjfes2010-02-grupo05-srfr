@@ -15,7 +15,6 @@
 		<property name="nome" />
 		<property name="endereco" />
 		<property name="contato" />
-		<property name="confiavel" />
 		<property name="num_operacoes_realizadas" column="operacoes_realizadas" />
 		<property name="num_operacoes_atuais" column="operacoes_atuais" />
 		

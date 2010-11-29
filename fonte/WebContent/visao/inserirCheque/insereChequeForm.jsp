@@ -12,7 +12,7 @@
 <br><br>
 <h4>Dados:</h4>
 
-<form action='InsereChequeServlet' method='POST'>
+<form action='../../InsereChequeServlet' method='POST'>
 	<p> Número:
 	<input type='text' name='numero'>
 	<p> CPF Cheque:
@@ -27,7 +27,7 @@
 	<input type='submit' value='Inserir'>
 </form>
 
-<a href="index.jsp">Home</a>
+<a href="../../index.jsp">Home</a>
 
 </body>
 </html>

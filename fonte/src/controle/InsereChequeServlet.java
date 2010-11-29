@@ -43,10 +43,6 @@ public class InsereChequeServlet extends HttpServlet {
 			Cliente cliente = dao.filtraCNPJ(CNPJ);
 			dao.encerra();
 			
-			System.out.println(cliente.getCnpj());
-			System.out.println(cliente.getNome());
-			System.out.println(cliente.getConfiavel());
-			
 			// Se o cliente não existe no BD, não posso inserir
 			// um cheque relacionado a ele!
 			if(cliente == null) {
@@ -54,9 +50,7 @@ public class InsereChequeServlet extends HttpServlet {
 			}
 			
 			// Caso contrário, devo checar se ele é confiável
-			if(cliente.getConfiavel() == 1) {
-				return true;
-			}
+			// fazer
 			
 			return false;
 			
@@ -148,9 +142,9 @@ public class InsereChequeServlet extends HttpServlet {
 		
 		if( validaFormulario(numero, cpf, cnpj, valorBruto, dataVencimento) ) {
 			//request.setAttribute("cnpjEmpresa", cnpj);
-			request.getRequestDispatcher("/insereChequeSucesso.jsp").forward(request, response);
+			request.getRequestDispatcher("visao/inserirCheque/insereChequeSucesso.jsp").forward(request, response);
 		} else {
-			request.getRequestDispatcher("/insereChequeFalha.jsp").forward(request, response);
+			request.getRequestDispatcher("visao/inserirCheque/insereChequeFalha.jsp").forward(request, response);
 		}		
 	}
 

@@ -42,7 +42,7 @@ public class ListaChequesServlet extends HttpServlet {
 			
 			request.setAttribute("tabela", cheques);
 			
-			request.getRequestDispatcher("listarCheques.jsp").forward(request, response);
+			request.getRequestDispatcher("visao/listarCheques/listarCheques.jsp").forward(request, response);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

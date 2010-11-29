@@ -19,7 +19,6 @@
 		<property name="valor_bruto" column="valorBruto" />
 		<property name="valor_descontado" column="valorDescontado" />
 		<property name="devolvido" />
-		<property name="receita" />
 	</class>
 	
 </hibernate-mapping>

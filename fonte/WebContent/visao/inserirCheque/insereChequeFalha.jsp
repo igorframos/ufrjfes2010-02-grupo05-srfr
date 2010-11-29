@@ -8,7 +8,7 @@
 </head>
 <body>
 
-	<h4>Cheque não pode ser inserido!</h3>
+	<h4>Cheque não pode ser inserido!</h4>
 
 </body>
 </html>

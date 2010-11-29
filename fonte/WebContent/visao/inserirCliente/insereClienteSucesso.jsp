@@ -4,18 +4,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Início</title>
+<title>Insert title here</title>
 </head>
 <body>
 
-	<p>
-	<a href="visao/inserirCheque/insereChequeForm.jsp"> Inserir Cheque </a>
-	
-	<p>	
-	<a href='ListaChequesServlet'> Listar Cheques </a>
-	
-	<p>
-	<a href="visao/inserirCliente/insereClienteForm.jsp"> Inserir Cliente </a>
-	
+	<h4>Cliente inserido com sucesso</h4>
+
 </body>
 </html>
