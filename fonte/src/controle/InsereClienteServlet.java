@@ -32,16 +32,15 @@ public class InsereClienteServlet extends HttpServlet {
     		return false;
     	}
     	
+    	Cliente cliente = new Cliente();
+		
+		cliente.setNome(nome);
+		cliente.setCnpj(cnpj);
+		cliente.setEndereco(endereco);
+		cliente.setContato(contato);
+    	
     	try {
 			ClienteDAO dao = new ClienteDAO();
-			
-			Cliente cliente = new Cliente();
-			
-			cliente.setNome(nome);
-			cliente.setCnpj(cnpj);
-			cliente.setEndereco(endereco);
-			cliente.setContato(contato);
-			
 			dao.insere(cliente);
 			
 			return true;
@@ -74,7 +73,7 @@ public class InsereClienteServlet extends HttpServlet {
 		if( valida(nome, cnpj, endereco, contato) ) {
 			request.getRequestDispatcher("visao/inserirCliente/insereClienteSucesso.jsp").forward(request, response);
 		} else {
-			request.getRequestDispatcher("visao/inserirCliente/insereClienteForm.jsp").forward(request, response);
+			response.sendRedirect("visao/inserirCliente/insereClienteForm.jsp");
 		}
 		
 	}

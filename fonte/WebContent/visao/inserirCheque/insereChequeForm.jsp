@@ -21,6 +21,8 @@
 	<input type='text' name='cnpj'>
 	<p> Valor Bruto (XX.YY):
 	<input type='text' name='valorBruto'>
+	<p> Valor Descontado (XX.YY):
+	<input type='text' name='valorDescontado'>
 	<p> Data de Vencimento (dd/mm/aaaa):
 	<input type='text' name='dataVencimento'>
 	<p>

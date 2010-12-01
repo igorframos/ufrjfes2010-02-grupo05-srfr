@@ -36,7 +36,7 @@ public class InsereChequeServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 	}
 	
-	private boolean validaCliente(String CNPJ) {
+	private Cliente pegaCliente(String CNPJ) {
 		
 		try {
 			ClienteDAO dao = new ClienteDAO();
@@ -46,20 +46,20 @@ public class InsereChequeServlet extends HttpServlet {
 			// Se o cliente não existe no BD, não posso inserir
 			// um cheque relacionado a ele!
 			if(cliente == null) {
-				return false;
+				return null;
 			}
 			
 			// Caso contrário, devo checar se ele é confiável
 			// fazer
 			
-			return false;
+			return cliente;
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		return true;
+		return null;
 	}
 	
 	private boolean validaNumero(String numero) {
@@ -83,20 +83,50 @@ public class InsereChequeServlet extends HttpServlet {
 		return false;
 	}
 	
-	private boolean validaFormulario(String numero, String cpf, String cnpj, String valorBruto, String dataVencimento) {
+	private void insereCheque(Cheque cheque) throws Exception {
+		ChequeDAO dao= new ChequeDAO();
+		dao.insere(cheque);
+		dao.encerra();
+	}
+	
+	private void atualizaCliente(Cliente cliente) throws Exception {
+		
+		ClienteDAO clienteDAO = new ClienteDAO();
+
+		int operacoesTotais = cliente.getNum_operacoes_realizadas();
+		int operacoesAtuais = cliente.getNum_operacoes_atuais();
+		
+		cliente.setNum_operacoes_atuais(operacoesAtuais+1);
+		cliente.setNum_operacoes_realizadas(operacoesTotais+1);
+
+		clienteDAO.atualiza(cliente);
+		clienteDAO.encerra();
+
+	}
+	
+	private boolean validaFormulario(String numero, String cpf, String cnpj, String valorBruto, String valorDescontado, String dataVencimento) {
 		
 		// Se algum campo estiver vazio
-		if( numero.equals("") || cpf.equals("") || cnpj.equals("") || valorBruto.equals("") || dataVencimento.equals("") ) {
+		if( numero.equals("") || cpf.equals("") || cnpj.equals("") || valorBruto.equals("") || valorDescontado.equals("") || dataVencimento.equals("") ) {
 			return false;
 		}
 		
-		// Se o cliente não for confiável
-		if(!validaCliente(cnpj)) {
+		// Se o cliente não existir no BD
+		Cliente cliente = pegaCliente(cnpj);
+		if( cliente == null ) {
 			return false;
 		}
 		
 		// Se o cheque já estiver no bd
 		if(!validaNumero(numero)) {
+			return false;
+		}
+		
+		// Se o valorDescontado > valorBruto
+		Double valorB = Double.parseDouble(valorBruto);
+		Double valorD = Double.parseDouble(valorDescontado);
+		
+		if( valorD > valorB ) {
 			return false;
 		}
 		
@@ -110,23 +140,23 @@ public class InsereChequeServlet extends HttpServlet {
 		
 		cheque.setData_vencimento(data);
 		
-		Double valor = Double.parseDouble(valorBruto);
-		
-		cheque.setValor_bruto(valor);
+		cheque.setValor_bruto(valorB);
+		cheque.setValor_descontado(valorD);
 		
 		try {
-			ChequeDAO dao = new ChequeDAO();
-			dao.insere(cheque);
-			dao.encerra();
+			// Inserindo cheque no BD
+			insereCheque(cheque);			
 			
+			// Alterando o número de operações do cliente no BD
+			atualizaCliente(cliente);
+						
 			return true;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		return false;
-		
+		return false;		
 	}
 
 	/**
@@ -138,9 +168,10 @@ public class InsereChequeServlet extends HttpServlet {
 		String cnpj = request.getParameter("cnpj");
 		String cpf = request.getParameter("cpf");
 		String valorBruto = request.getParameter("valorBruto");
+		String valorDescontado = request.getParameter("valorDescontado");
 		String dataVencimento = request.getParameter("dataVencimento");
 		
-		if( validaFormulario(numero, cpf, cnpj, valorBruto, dataVencimento) ) {
+		if( validaFormulario(numero, cpf, cnpj, valorBruto, valorDescontado, dataVencimento) ) {
 			//request.setAttribute("cnpjEmpresa", cnpj);
 			request.getRequestDispatcher("visao/inserirCheque/insereChequeSucesso.jsp").forward(request, response);
 		} else {

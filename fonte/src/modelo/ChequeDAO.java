@@ -96,4 +96,14 @@ public class ChequeDAO {
 		sessao.close();
 	}
 	
+	public void atualiza(Cheque cheque) {
+		Session sessao = sessaoFactory.openSession();
+		sessao.beginTransaction();
+		
+		sessao.update(cheque);
+		
+		sessao.getTransaction().commit();
+		sessao.close();
+	}
+	
 }

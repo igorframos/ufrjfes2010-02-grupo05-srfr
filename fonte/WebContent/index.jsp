@@ -17,5 +17,8 @@
 	<p>
 	<a href="visao/inserirCliente/insereClienteForm.jsp"> Inserir Cliente </a>
 	
+	<p>
+	<a href="visao/registrarDeposito/registraDepositoForm.jsp"> Registrar Depósito </a>
+	
 </body>
 </html>

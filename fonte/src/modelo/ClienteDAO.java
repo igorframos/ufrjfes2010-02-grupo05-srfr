@@ -93,4 +93,15 @@ public class ClienteDAO {
 		sessao.close();
 	}
 	
+	public void atualiza(Cliente cliente) {
+		
+		Session sessao = sessaoFactory.openSession();
+		sessao.beginTransaction();
+		
+		sessao.update(cliente);
+		
+		sessao.getTransaction().commit();
+		sessao.close();
+	}
+	
 }
