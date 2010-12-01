@@ -12,7 +12,7 @@
 	
 	<br><br>
 	
-	<a href="index.jsp">Home</a>
+	<a href="../menuPrincipal.jsp">Home</a>
 
 </body>
 </html>

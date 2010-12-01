@@ -6,14 +6,10 @@ public class Cheque {
 	private String numero;
 	private Date data_desconto;
 	private Date data_vencimento;
-	private double taxa_desconto;
-	private double taxa_efetiva;
 	private double valor_bruto;
 	private double valor_descontado;
-	private double receita;
 	private String CPF;
 	private String CNPJ;
-	private Boolean vencido;
 	private int devolvido;
 	
 	public Cheque() {
@@ -44,12 +40,6 @@ public class Cheque {
 	public void setCPF(String cPF) {
 		CPF = cPF;
 	}
-	public Boolean getVencido() {
-		return vencido;
-	}
-	public void setVencido(Boolean vencido) {
-		this.vencido = vencido;
-	}
 	public int getDevolvido() {
 		return devolvido;
 	}
@@ -61,22 +51,6 @@ public class Cheque {
 	}
 	public String getCNPJ() {
 		return CNPJ;
-	}
-
-	public double getTaxa_desconto() {
-		return taxa_desconto;
-	}
-
-	public void setTaxa_desconto(double taxa_desconto) {
-		this.taxa_desconto = taxa_desconto;
-	}
-
-	public double getTaxa_efetiva() {
-		return taxa_efetiva;
-	}
-
-	public void setTaxa_efetiva(double taxa_efetiva) {
-		this.taxa_efetiva = taxa_efetiva;
 	}
 
 	public double getValor_bruto() {
@@ -93,14 +67,6 @@ public class Cheque {
 
 	public void setValor_descontado(double valor_descontado) {
 		this.valor_descontado = valor_descontado;
-	}
-
-	public double getReceita() {
-		return receita;
-	}
-
-	public void setReceita(double receita) {
-		this.receita = receita;
 	}
 	
 	

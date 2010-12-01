@@ -9,6 +9,8 @@
 <body>
 
 	<h4>Cheque não pode ser inserido!</h4>
+	
+	<a href="../menuPrincipal.jsp">Home</a>
 
 </body>
 </html>

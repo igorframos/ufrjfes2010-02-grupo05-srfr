@@ -1,7 +1,6 @@
 package controle;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,19 +8,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import modelo.ChequeDAO;
+import modelo.Usuario;
+import modelo.UsuarioDAO;
 
 /**
- * Servlet implementation class ListaChequesServlet
+ * Servlet implementation class LoginServlet
  */
-@WebServlet("/ListaChequesServlet")
-public class ListaChequesServlet extends HttpServlet {
+@WebServlet("/LoginServlet")
+public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ListaChequesServlet() {
+    public LoginServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,26 +31,55 @@ public class ListaChequesServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-		List cheques;
-		
+	}
+
+	
+	boolean validaUsuario(String login, String senha) {
 		try {
-			ChequeDAO dao = new ChequeDAO();
-			cheques = dao.listar();
+			UsuarioDAO dao = new UsuarioDAO();
 			
-			request.getRequestDispatcher("visao/listarCheques/listarCheques.jsp").forward(request, response);
+			Usuario usuario = dao.filtraLogin(login);
+			
+			if(!senha.equals(usuario.getSenha())) {
+				return false;
+			}
+			
+			UsuarioLogado usuarioLogado = UsuarioLogado.pegaUsuario();
+			
+			usuarioLogado.setLogin(login);
+			
+			if(usuario.getAdmin() == 1) {
+				usuarioLogado.setAdmin(true);
+			} else {
+				usuarioLogado.setAdmin(false);
+			}
+			
+			return true;			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
+		return false;
 	}
-
+	
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		String login, senha;
+		
+		login = request.getParameter("login");
+		senha = request.getParameter("senha");
+		
+		if(validaUsuario(login, senha)) {
+			response.sendRedirect("visao/menuPrincipal.jsp");
+		} else {
+			response.sendRedirect("visao/index.jsp");
+		}
 	}
 
 }

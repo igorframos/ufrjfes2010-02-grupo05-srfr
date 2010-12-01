@@ -11,10 +11,21 @@
 
 	<display:table name="tabela">
 	  <display:column property="numero" title="Número" />
-	  <display:column property="data_vencimento" title="Data Vencimento" />
 	  <display:column property="CPF" />
-	  <display:column property="CNPJ" />
+	  <display:column property="CNPJ" title="CNPJ do Cliente" />
+	  <display:column property="data_vencimento" title="Data Vencimento" />
+	  <display:column property="data_desconto" title="Data Desconto" />
+	  <display:column property="valor_bruto" title="Valor Bruto" />
+	  <display:column property="valor_descontado" title="Valor Descontado" />
+	  <display:column property="taxa_efetiva" title="Taxa Efetiva" />
+	  <display:column property="taxa_desconto" title="Taxa Desconto" />
+	  <display:column property="receita" title="Receita" />
+	  <display:column property="vencido" title="Vencido?" />
+	  <display:column property="devolvido" title="Devolvido?" />
 	</display:table>
+	
+	<p>
+	<a href="../menuPrincipal.jsp"> Home </a>
 
 </body>
 </html>

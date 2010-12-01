@@ -9,6 +9,9 @@
 <body>
 
 	<h4>Depósito Registrado</h4>
+	
+	<p>
+	<a href="../menuPrincipal.jsp"> Home </a>
 
 </body>
 </html>

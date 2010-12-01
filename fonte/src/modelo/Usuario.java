@@ -5,8 +5,9 @@ public class Usuario {
 	private String primeiro_nome;
 	private String ultimo_nome;
 	private String email;
-	private String identidade;
-	private Boolean admin;
+	private String login;
+	private String senha;
+	private int admin;
 	
 	public String getCpf() {
 		return cpf;
@@ -32,17 +33,23 @@ public class Usuario {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getIdentidade() {
-		return identidade;
-	}
-	public void setIdentidade(String identidade) {
-		this.identidade = identidade;
-	}
-	public Boolean getAdmin() {
+	public int getAdmin() {
 		return admin;
 	}
-	public void setAdmin(Boolean admin) {
+	public void setAdmin(int admin) {
 		this.admin = admin;
+	}
+	public void setLogin(String login) {
+		this.login = login;
+	}
+	public String getLogin() {
+		return login;
+	}
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+	public String getSenha() {
+		return senha;
 	}
 	
 	

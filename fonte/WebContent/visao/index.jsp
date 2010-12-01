@@ -4,21 +4,24 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Início</title>
+<title>Login</title>
 </head>
 <body>
 
-	<p>
-	<a href="visao/inserirCheque/insereChequeForm.jsp"> Inserir Cheque </a>
+	<form action='LoginServlet' method="post">
 	
-	<p>	
-	<a href='ListaChequesServlet'> Listar Cheques </a>
+	<p> Login
+	<input type="text" name="login">
+	
+	<p> Senha
+	<input type="password" name="senha">
 	
 	<p>
-	<a href="visao/inserirCliente/insereClienteForm.jsp"> Inserir Cliente </a>
+	<input type="submit" value="Login">
 	
-	<p>
-	<a href="visao/registrarDeposito/registraDepositoForm.jsp"> Registrar Depósito </a>
+	</form>
+
+	<a href="menuPrincipal.jsp"> Menu Principal </a>
 	
 </body>
 </html>

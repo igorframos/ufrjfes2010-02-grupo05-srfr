@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="modelo">
+
+	<class name="Usuario" table="usuario">
+	
+		<id name="login" column="login" type="string" >
+			<generator class="assigned"/>
+		</id>
+		
+		<property name="cpf" column="cpf" />
+		<property name="primeiro_nome" column="primeiroNome" />
+		<property name="ultimo_nome" column="ultimoNome" />
+		<property name="admin" column="admin" />
+		<property name="senha" column="senha" />
+		<property name="email" column="email" />
+	</class>
+	
+</hibernate-mapping>

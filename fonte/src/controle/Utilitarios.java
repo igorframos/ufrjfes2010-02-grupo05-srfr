@@ -23,4 +23,27 @@ public class Utilitarios {
 		
 	}
 	
+	public static String dateToString(Date data) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(data);
+		
+		String dia, mes, ano;
+		
+		if(cal.get(Calendar.DAY_OF_MONTH) < 10) {
+			dia = "0" + cal.get(Calendar.DAY_OF_MONTH);
+		} else {
+			dia = "" + cal.get(Calendar.DAY_OF_MONTH);
+		}
+		
+		if(cal.get(Calendar.MONTH) < 9) {
+			mes = "0" + (cal.get(Calendar.MONTH) + 1);
+		} else {
+			mes = "" + (cal.get(Calendar.MONTH) + 1);
+		}
+		
+		ano = "" + cal.get(Calendar.YEAR);
+		
+		return dia + "/" + mes + "/" + ano;
+	}
+	
 }

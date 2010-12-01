@@ -25,7 +25,7 @@
 		<input type='submit' value='Inserir'>
 	</form>
 	
-	<a href="../../index.jsp">Home</a>
+	<a href="../menuPrincipal.jsp">Home</a>
 
 </body>
 </html>

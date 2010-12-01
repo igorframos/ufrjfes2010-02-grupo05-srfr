@@ -1,5 +1,6 @@
 package modelo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -31,20 +32,25 @@ public class ChequeDAO {
 		sessao.close();
 	}
 	
-	public List listar() {
+	public List<ChequeVO> listar() {
 		Session sessao = sessaoFactory.openSession();
 		sessao.beginTransaction();
 		
 		Criteria filtro = sessao.createCriteria(Cheque.class);
-		//filtro.addOrder(Order.asc("numero"));
 		filtro.addOrder(Order.asc("data_vencimento"));
 		
-		List lista = filtro.list();
+		List<Cheque> lista = filtro.list();
 		
 		sessao.getTransaction().commit();
 		sessao.close();
 		
-		return lista;
+		List<ChequeVO> retorno = new ArrayList<ChequeVO>();
+		
+		for (Cheque cheque : lista) {
+			retorno.add(new ChequeVO(cheque));
+		}
+		
+		return retorno;
 	}
 	
 	public Cheque filtraNumero(String numero) {

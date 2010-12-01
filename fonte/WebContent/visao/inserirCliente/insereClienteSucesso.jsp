@@ -9,6 +9,8 @@
 <body>
 
 	<h4>Cliente inserido com sucesso</h4>
+	
+	<a href="../menuPrincipal.jsp">Home</a>
 
 </body>
 </html>

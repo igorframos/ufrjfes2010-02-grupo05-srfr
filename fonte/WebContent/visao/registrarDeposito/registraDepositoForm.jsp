@@ -21,7 +21,7 @@
 		<input type="reset" value="Apagar Dados">
 	</form>
 	
-	<a href="../../index.jsp"> Home </a>
+	<a href="../menuPrincipal.jsp"> Home </a>
 
 </body>
 </html>
