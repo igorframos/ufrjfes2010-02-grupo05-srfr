@@ -8,8 +8,8 @@ public class Cheque {
 	private Date data_vencimento;
 	private double valor_bruto;
 	private double valor_descontado;
-	private String CPF;
-	private String CNPJ;
+	private String cpf;
+	private String cnpj;
 	private int devolvido;
 	
 	public Cheque() {
@@ -34,11 +34,11 @@ public class Cheque {
 	public void setData_vencimento(Date data_vencimento) {
 		this.data_vencimento = data_vencimento;
 	}
-	public String getCPF() {
-		return CPF;
+	public String getCpf() {
+		return cpf;
 	}
-	public void setCPF(String cPF) {
-		CPF = cPF;
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 	public int getDevolvido() {
 		return devolvido;
@@ -46,11 +46,11 @@ public class Cheque {
 	public void setDevolvido(int devolvido) {
 		this.devolvido = devolvido;
 	}
-	public void setCNPJ(String cNPJ) {
-		CNPJ = cNPJ;
+	public void setCnpj(String cnpj) {
+		this.cnpj = cnpj;
 	}
-	public String getCNPJ() {
-		return CNPJ;
+	public String getCnpj() {
+		return cnpj;
 	}
 
 	public double getValor_bruto() {

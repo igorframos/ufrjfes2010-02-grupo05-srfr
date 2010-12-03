@@ -25,7 +25,7 @@
 	</display:table>
 	
 	<p>
-	<a href="../menuPrincipal.jsp"> Home </a>
+	<a href="visao/menuPrincipal.jsp"> Home </a>
 
 </body>
 </html>

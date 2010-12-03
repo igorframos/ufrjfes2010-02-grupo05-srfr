@@ -87,7 +87,62 @@ public class ChequeDAO {
 		sessao.getTransaction().commit();
 		sessao.close();
 		
-		return filtrada;
+		List<ChequeVO> retorno = new ArrayList<ChequeVO>();
+		
+		for (Object cheque : filtrada) {
+			retorno.add(new ChequeVO((Cheque)cheque));
+		}
+		
+		return retorno;
+	}
+	
+	public List filtraCNPJ(String cnpj) {
+		
+		Session sessao = sessaoFactory.openSession();
+		sessao.beginTransaction();
+		
+		Criteria filtro = sessao.createCriteria(Cheque.class);
+		filtro.add(Restrictions.like("cnpj", cnpj));
+		
+		List filtrada = filtro.list();
+		
+		sessao.getTransaction().commit();
+		sessao.close();
+		
+		List<ChequeVO> retorno = new ArrayList<ChequeVO>();
+		
+		for (Object cheque : filtrada) {
+			retorno.add(new ChequeVO( (Cheque)cheque));
+		}
+		
+		return retorno;
+	}
+	
+	public List filtraCNPJ(String cnpj, boolean devolvidos) {
+		
+		if(!devolvidos) {
+			return filtraCNPJ(cnpj);
+		}
+		
+		Session sessao = sessaoFactory.openSession();
+		sessao.beginTransaction();
+		
+		Criteria filtro = sessao.createCriteria(Cheque.class);
+		filtro.add(Restrictions.like("cnpj", cnpj));
+		filtro.add(Restrictions.like("devolvido", 1));
+		
+		List filtrada = filtro.list();
+		
+		sessao.getTransaction().commit();
+		sessao.close();
+		
+		List<ChequeVO> retorno = new ArrayList<ChequeVO>();
+		
+		for (Object cheque : filtrada) {
+			retorno.add(new ChequeVO( (Cheque)cheque));
+		}
+		
+		return retorno;	
 	}
 	
 	public void deleta(String numero) {

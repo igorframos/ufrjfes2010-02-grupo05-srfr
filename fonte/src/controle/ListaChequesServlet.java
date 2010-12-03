@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import modelo.Cheque;
 import modelo.ChequeDAO;
 
 /**
@@ -32,17 +33,22 @@ public class ListaChequesServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		List cheques;
-		
-		try {
-			ChequeDAO dao = new ChequeDAO();
-			cheques = dao.listar();
+		if(Utilitarios.usuarioLogado(request)) {
+			List cheques;
 			
-			request.getRequestDispatcher("visao/listarCheques/listarCheques.jsp").forward(request, response);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			try {
+				ChequeDAO dao = new ChequeDAO();
+				cheques = dao.listar();
+				
+				request.setAttribute("tabela", cheques);
+				request.getRequestDispatcher("visao/listarCheques/listarCheques.jsp").forward(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else {
+			response.sendRedirect("");
+		}		
 		
 	}
 

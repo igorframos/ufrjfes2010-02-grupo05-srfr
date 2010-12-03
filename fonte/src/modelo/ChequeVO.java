@@ -31,8 +31,8 @@ public class ChequeVO {
 		this.numero = cheque.getNumero();
 		this.valor_bruto = cheque.getValor_bruto();
 		this.valor_descontado = cheque.getValor_descontado();
-		this.CPF = cheque.getCPF();
-		this.CNPJ = cheque.getCNPJ();		
+		this.CPF = cheque.getCpf();
+		this.CNPJ = cheque.getCnpj();		
 		this.data_vencimento = Utilitarios.dateToString(cheque.getData_vencimento());
 		
 		// Setando a data de Desconto, se ela tiver sido cadastrada

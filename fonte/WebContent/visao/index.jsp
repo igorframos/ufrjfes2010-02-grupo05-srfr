@@ -21,7 +21,7 @@
 	
 	</form>
 
-	<a href="menuPrincipal.jsp"> Menu Principal </a>
+	<a href="visao/menuPrincipal.jsp"> Menu Principal </a>
 	
 </body>
 </html>

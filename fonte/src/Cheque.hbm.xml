@@ -12,8 +12,8 @@
 			<generator class="assigned"/>
 		</id>
 		
-		<property name="CPF" column="cpf" />
-		<property name="CNPJ" column="cnpj" />
+		<property name="cpf" column="cpf" />
+		<property name="cnpj" column="cnpj" />
 		<property name="data_desconto" column="dataDesconto" />
 		<property name="data_vencimento" column="dataVencimento" />
 		<property name="valor_bruto" column="valorBruto" />

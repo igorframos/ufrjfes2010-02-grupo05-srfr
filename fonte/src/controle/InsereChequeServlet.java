@@ -5,6 +5,7 @@ import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -133,8 +134,8 @@ public class InsereChequeServlet extends HttpServlet {
 		Cheque cheque = new Cheque();
 		
 		cheque.setNumero(numero);
-		cheque.setCPF(cpf);
-		cheque.setCNPJ(cnpj);
+		cheque.setCpf(cpf);
+		cheque.setCnpj(cnpj);
 		
 		Date data = Utilitarios.stringToDate(dataVencimento);
 		
@@ -171,12 +172,18 @@ public class InsereChequeServlet extends HttpServlet {
 		String valorDescontado = request.getParameter("valorDescontado");
 		String dataVencimento = request.getParameter("dataVencimento");
 		
-		if( validaFormulario(numero, cpf, cnpj, valorBruto, valorDescontado, dataVencimento) ) {
-			//request.setAttribute("cnpjEmpresa", cnpj);
-			request.getRequestDispatcher("visao/inserirCheque/insereChequeSucesso.jsp").forward(request, response);
+		
+		if(Utilitarios.usuarioLogado(request)) {
+			if( validaFormulario(numero, cpf, cnpj, valorBruto, valorDescontado, dataVencimento) ) {
+				//request.setAttribute("cnpjEmpresa", cnpj);
+				request.getRequestDispatcher("visao/inserirCheque/insereChequeSucesso.jsp").forward(request, response);
+			} else {
+				request.getRequestDispatcher("visao/inserirCheque/insereChequeFalha.jsp").forward(request, response);
+			}
 		} else {
-			request.getRequestDispatcher("visao/inserirCheque/insereChequeFalha.jsp").forward(request, response);
-		}		
+			response.sendRedirect("");
+		}
+
 	}
 
 }

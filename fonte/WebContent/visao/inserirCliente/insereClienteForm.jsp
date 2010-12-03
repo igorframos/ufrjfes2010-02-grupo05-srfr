@@ -8,9 +8,28 @@
 </head>
 <body>
 
+	<% 
+		String msgErro = "";
+		
+		Cookie biscoitos[] = request.getCookies();
+		
+		if(biscoitos != null) {
+			for(Cookie c : biscoitos) {
+				if( c.getName().equals("mensagemErroInsereCliente") ) {
+					msgErro = c.getValue();
+				}
+			}
+		}
+	%>
+	
+	<p>
 	<h3>Inserir Cliente</h3>
 	<br><br>
+	
 	<h4>Dados:</h4>
+	
+	<p>
+	<%= msgErro %>
 	
 	<form action='../../InsereClienteServlet' method='POST'>
 		<p> Razão Social:

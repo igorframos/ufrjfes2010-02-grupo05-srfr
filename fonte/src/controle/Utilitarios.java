@@ -3,8 +3,25 @@ package controle;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+
 public class Utilitarios {
 
+	public static boolean usuarioLogado(HttpServletRequest request) {
+		
+		Cookie biscoitos[] = request.getCookies();
+		for(Cookie c : biscoitos) {
+			
+			if( c.getName().equalsIgnoreCase("nomeUsuario")) {
+				return true;
+			}
+			
+		}
+		
+		return false;
+	}
+	
 	public static Date stringToDate(String dataString) {
 		
 		String valores[] = dataString.split("/");

@@ -66,7 +66,7 @@ public class RegistraDepositoServlet extends HttpServlet {
 	
 	private void atualizaCheque(Cheque cheque) throws Exception {
 		
-		atualizaCliente(cheque.getCNPJ());
+		atualizaCliente(cheque.getCnpj());
 		
 		ChequeDAO dao = new ChequeDAO();
 		
@@ -121,10 +121,14 @@ public class RegistraDepositoServlet extends HttpServlet {
 		String numero = request.getParameter("numero");
 		String dataDesconto = request.getParameter("data");
 		
-		if(validaForm(numero, dataDesconto)) {
-			request.getRequestDispatcher("/visao/registrarDeposito/registraDepositoSucesso.jsp").forward(request, response);
+		if(Utilitarios.usuarioLogado(request)) {
+			if(validaForm(numero, dataDesconto)) {
+				request.getRequestDispatcher("/visao/registrarDeposito/registraDepositoSucesso.jsp").forward(request, response);
+			} else {
+				response.sendRedirect("/visao/registrarDeposito/registraDepositoForm.jsp");
+			}
 		} else {
-			response.sendRedirect("/visao/registrarDeposito/registraDepositoForm.jsp");
+			response.sendRedirect("");
 		}
 		
 	}
