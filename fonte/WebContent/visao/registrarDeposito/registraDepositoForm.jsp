@@ -16,6 +16,9 @@
 		<p> Data do Desconto (dd/mm/aaaa):
 		<input type='text' name='data'>
 		
+		<p> Devolvido?
+		<input type="checkbox" name="devolvido">
+		
 		<p>
 		<input type="submit" value='Registrar'>
 		<input type="reset" value="Apagar Dados">

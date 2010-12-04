@@ -9,12 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import controle.Utilitarios.Utilitarios;
-
 import modelo.Dominio.Cheque;
 import modelo.Dominio.Cliente;
+import modelo.Dominio.CpfInvalido;
 import modelo.Persistencia.ChequeDAO;
 import modelo.Persistencia.ClienteDAO;
+import modelo.Persistencia.CpfInvalidoDAO;
+import controle.Utilitarios.Utilitarios;
 
 /**
  * Servlet implementation class RegistraDepositoServlet
@@ -66,6 +67,18 @@ public class RegistraDepositoServlet extends HttpServlet {
 		dao.atualiza(cliente);
 	}
 	
+	private void atualizaCpfInvalido(String cpf) throws Exception {
+		CpfInvalidoDAO dao = new CpfInvalidoDAO();
+		
+		CpfInvalido cpfI = dao.filtraCPF(cpf);
+		
+		if(cpfI == null) {
+			CpfInvalido cpfNovo = new CpfInvalido();
+			cpfNovo.setCpf(cpf);
+			dao.insere(cpfNovo);
+		}
+	}
+	
 	private void atualizaCheque(Cheque cheque) throws Exception {
 		
 		atualizaCliente(cheque.getCnpj());
@@ -73,9 +86,14 @@ public class RegistraDepositoServlet extends HttpServlet {
 		ChequeDAO dao = new ChequeDAO();
 		
 		dao.atualiza(cheque);
+		dao.encerra();
+		
+		if(cheque.getDevolvido() == 1) {
+			atualizaCpfInvalido(cheque.getCpf());
+		}
 	}
 	
-	private boolean validaForm(String numero, String dataDesconto) {
+	private boolean validaForm(String numero, String dataDesconto, int devolvido) {
 		
 		if(numero.equals("") || dataDesconto.equals("") ) {
 			return false;
@@ -103,6 +121,7 @@ public class RegistraDepositoServlet extends HttpServlet {
 		}
 		
 		cheque.setData_desconto(data);
+		cheque.setDevolvido(devolvido);
 		
 		// Atualizo o Cheque e o Cliente no Banco de Dados
 		try {
@@ -122,9 +141,15 @@ public class RegistraDepositoServlet extends HttpServlet {
 		
 		String numero = request.getParameter("numero");
 		String dataDesconto = request.getParameter("data");
+		String devolvidoMarcado[] = request.getParameterValues("devolvido");
+		int devolvido = 0;
+		
+		if(devolvidoMarcado != null) {
+			devolvido = 1;
+		}
 		
 		if(Utilitarios.usuarioLogado(request)) {
-			if(validaForm(numero, dataDesconto)) {
+			if(validaForm(numero, dataDesconto, devolvido)) {
 				request.getRequestDispatcher("/visao/registrarDeposito/registraDepositoSucesso.jsp").forward(request, response);
 			} else {
 				response.sendRedirect("/visao/registrarDeposito/registraDepositoForm.jsp");

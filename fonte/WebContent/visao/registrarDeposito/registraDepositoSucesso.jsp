@@ -4,14 +4,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Depósito Registrado</title>
 </head>
 <body>
 
 	<h4>Depósito Registrado</h4>
 	
 	<p>
-	<a href="../menuPrincipal.jsp"> Home </a>
+	<a href="visao/menuPrincipal.jsp"> Home </a>
 
 </body>
 </html>
