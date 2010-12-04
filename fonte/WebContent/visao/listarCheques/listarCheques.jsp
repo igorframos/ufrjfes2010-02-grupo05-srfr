@@ -8,8 +8,9 @@
 <title>Lista de Cheques</title>
 </head>
 <body>
+	<jsp:include page = "../cabecalho.jsp" flush="true" />
 
-	<display:table name="tabela">
+	<display:table name="tabela" class="tabelaJSP">
 	  <display:column property="numero" title="Número" />
 	  <display:column property="CPF" />
 	  <display:column property="CNPJ" title="CNPJ do Cliente" />
@@ -25,7 +26,7 @@
 	</display:table>
 	
 	<p>
-	<a href="visao/menuPrincipal.jsp"> Home </a>
+	<a href="visao/menuPrincipal.jsp" class="linkVoltar"> Menu Principal </a>
 
 </body>
 </html>

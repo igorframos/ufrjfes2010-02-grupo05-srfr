@@ -7,12 +7,13 @@
 <title>Insere Cheque</title>
 </head>
 <body>
+	<jsp:include page = "../cabecalho.jsp" flush="true" />
 
 	<h3> Cheque inserido com sucesso! </h3>
 	
 	<br><br>
 	
-	<a href="visao/menuPrincipal.jsp">Home</a>
+	<a href="visao/menuPrincipal.jsp" class="linkVoltar">Menu Principal</a>
 
 </body>
 </html>

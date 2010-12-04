@@ -7,6 +7,7 @@
 <title>Registrar Depósito</title>
 </head>
 <body>
+	<jsp:include page = "../cabecalho.jsp" flush="true" />
 
 	<form action='../../RegistraDepositoServlet' method="post">
 	
@@ -24,7 +25,8 @@
 		<input type="reset" value="Apagar Dados">
 	</form>
 	
-	<a href="../menuPrincipal.jsp"> Home </a>
+	<p>
+	<a href="../menuPrincipal.jsp" class="linkVoltar"> Menu Principal </a>
 
 </body>
 </html>

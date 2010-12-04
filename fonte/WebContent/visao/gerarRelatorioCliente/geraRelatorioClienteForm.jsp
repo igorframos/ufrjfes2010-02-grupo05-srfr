@@ -8,6 +8,8 @@
 </head>
 <body>
 
+	<jsp:include page = "../cabecalho.jsp" flush="true" />
+
 	<form action = "../../GeraRelatorioClienteServlet" method="post">
 	
 		<p> CNPJ:
@@ -21,7 +23,7 @@
 	
 	</form>
 	
-	<a href = "../menuPrincipal.jsp">Menu Principal</a>
+	<a href = "../menuPrincipal.jsp" class="linkVoltar">Menu Principal</a>
 
 </body>
 </html>

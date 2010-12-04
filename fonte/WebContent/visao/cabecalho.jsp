@@ -8,7 +8,9 @@
 </head>
 <body>
 
-	<link rel=stylesheet type="text/css" href="estiloDefault.css">  
+	<link rel=stylesheet type="text/css" href="estiloDefault.css">
+	<link rel=stylesheet type="text/css" href="../estiloDefault.css">
+	<link rel=stylesheet type="text/css" href="visao/estiloDefault.css">
 
 	<% 
 		String login = "visitante";
@@ -17,13 +19,18 @@
 		if(biscoitos != null) {
 			for(Cookie c : biscoitos) {
 				if( c.getName().equalsIgnoreCase("nomeUsuario")) {
-					login = "Logado como: " + c.getValue();
+					login = c.getValue();
 				}
 			}
 		}
 	%>
 	
-	<p> <%= login  %>
+	<div id="titulo">Factoring Serious Business!</div>
+	
+	<div id="loginTexto">Logado como:</div> 
+	<div id="login"><%= login  %></div>
+	
+	<hr>
 
 </body>
 </html>

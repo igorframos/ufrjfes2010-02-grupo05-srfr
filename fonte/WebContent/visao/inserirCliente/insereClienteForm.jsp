@@ -8,6 +8,8 @@
 </head>
 <body>
 
+	<jsp:include page = "../cabecalho.jsp" flush="true" />
+
 	<% 
 		String msgErro = "";
 		
@@ -44,7 +46,8 @@
 		<input type='submit' value='Inserir'>
 	</form>
 	
-	<a href="../menuPrincipal.jsp">Home</a>
+	<p>
+	<a href="../menuPrincipal.jsp" class="linkVoltar">Menu Principal</a>
 
 </body>
 </html>

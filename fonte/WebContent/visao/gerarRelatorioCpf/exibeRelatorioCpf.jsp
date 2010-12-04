@@ -9,6 +9,8 @@
 </head>
 <body>
 
+	<jsp:include page = "../cabecalho.jsp" flush="true" />
+
 	<display:table name="cheques">
 	  <display:column property="numero" title="Número" />
 	  <display:column property="CPF" />
@@ -24,7 +26,7 @@
 	  <display:column property="devolvido" title="Devolvido?" />
 	</display:table>
 
-	<a href = '../menuPrincipal.jsp'>Menu Principal</a>
+	<a href = 'visao/menuPrincipal.jsp' class="linkVoltar">Menu Principal</a>
 
 </body>
 </html>

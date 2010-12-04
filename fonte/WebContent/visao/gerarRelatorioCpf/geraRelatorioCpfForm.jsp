@@ -8,6 +8,8 @@
 </head>
 <body>
 
+	<jsp:include page = "../cabecalho.jsp" flush="true" />
+
 	<p>
 	<h3>Gerar Relatório por CPF</h3>
 	<br><br>
@@ -21,7 +23,7 @@
 		<input type="submit" value="Gerar Relatório">
 	</form>
 	
-	<a href="../menuPrincipal.jsp">Home</a>
+	<a href="../menuPrincipal.jsp" class="linkVoltar">Menu Principal</a>
 
 </body>
 </html>

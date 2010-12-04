@@ -4,9 +4,9 @@
         "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
-<hibernate-mapping package="modelo.Dominio">
+<hibernate-mapping>
 
-	<class name="Cheque" table="cheque">
+	<class name="modelo.Dominio.Cheque" table="cheque">
 	
 		<id name="numero" column="numero" type="string" >
 			<generator class="assigned"/>

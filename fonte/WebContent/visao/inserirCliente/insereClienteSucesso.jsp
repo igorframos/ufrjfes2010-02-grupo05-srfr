@@ -7,10 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<jsp:include page = "../cabecalho.jsp" flush="true" />
 
 	<h4>Cliente inserido com sucesso</h4>
 	
-	<a href="../menuPrincipal.jsp">Home</a>
+	<a href="../menuPrincipal.jsp" class="linkVoltar">Menu Principal</a>
 
 </body>
 </html>

@@ -12,16 +12,70 @@
 	<jsp:include page = "cabecalho.jsp" flush="true" />
 
 	<p>
-	<a href="inserirCheque/insereChequeForm.jsp"> Inserir Cheque </a>
 	
-	<p>
-	<a href="inserirCliente/insereClienteForm.jsp"> Inserir Cliente </a>
+	<table id="tableMenu" >
 	
-	<p>
-	<a href="registrarDeposito/registraDepositoForm.jsp"> Registrar Depósito </a>
+		<tr>	
+			<th>
+			Cheque			
+			</th>
+		</tr>
 	
-	<p>
-	<a href="relatorios.jsp"> Gerar Relatórios </a>
+		<tr>
+			<td>
+			<a href="inserirCheque/insereChequeForm.jsp" class="menuLink" > Inserir Cheque </a>
+			</td>
+		</tr>
+		
+		<tr>
+			<td>
+			<a href="registrarDeposito/registraDepositoForm.jsp" class="menuLink" > Registrar Depósito </a>
+			</td>
+		</tr>
+	
+		<tr>
+			<th>
+			Cliente
+			</th>
+		</tr>
+		
+		<tr>
+			<td>
+			<a href="inserirCliente/insereClienteForm.jsp" class="menuLink" > Inserir Cliente </a>
+			</td>
+		</tr>
+		
+		<tr>
+			<th>
+			Relatórios
+			</th>
+		</tr>
+		
+		<tr>
+			<td>
+			<a href="gerarRelatorioCliente/geraRelatorioClienteForm.jsp" class="menuLink" > Por Cliente </a>
+			</td>
+		</tr>
+		
+		<tr>
+			<td>
+			<a href="gerarRelatorioCpf/geraRelatorioCpfForm.jsp" class="menuLink" > Por CPF </a>
+			</td>
+		</tr>
+		
+		<tr>
+			<td>
+			<a href="../GeraRelatorioDevolvidosServlet" class="menuLink" > Cheques Devolvidos </a>
+			</td>
+		</tr>
+		
+		<tr>
+			<td>
+			<a href="../ListaChequesServlet" class="menuLink" > Todos os Cheques </a>
+			</td>
+		</tr>
+	
+	</table>
 
 </body>
 </html>

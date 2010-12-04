@@ -5,14 +5,55 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insere Cheque</title>
+
+<script language="JavaScript">
+	<!--
+	function verificaData()
+	{
+	    var data = /^(\d{2})\/(\d{2})\/(\d{4})$/;
+	    var resultado = document.form1.text1.value.match(data);
+	    if (resultado == null) {
+	    	document.insereChequeForm.dataVencimento.value = "";
+	        return false;
+	    } else {
+	    	return true;
+	    }
+	}
+	function verificaDecimal()
+	{
+	    var decimal = /^(\d*)\.(\d*)$/;
+	    var resultadoBruto = document.insereChequeForm.valorBruto.value.match(decimal);
+	    var resultadoDescontado = document.insereChequeForm.valorDescontado.value.match(decimal);
+	    if (resultadoBruto == null || resultadoDescontado == null) {
+	        return false;
+	    } else {
+	        return true;
+	    }
+	}
+	
+	function verificaForm()
+	{
+		if( verificaDecimal() && verificaData() ) {
+			document.insereChequeForm.submit();
+		} else {
+			alert("tem coisa errada aí, manolo!");
+			document.insereChequeForm.reset();
+			return false;
+		}
+	}
+	//-->
+</script>
+
 </head>
 <body>
+
+<jsp:include page = "../cabecalho.jsp" flush="true" />
 
 <h3>Inserir Cheque</h3>
 <br><br>
 <h4>Dados:</h4>
 
-<form action='../../InsereChequeServlet' method='POST'>
+<form name="insereChequeForm" action='../../InsereChequeServlet' method='POST' onsubmit="return verificaForm()">
 	<p> Número:
 	<input type='text' name='numero'>
 	<p> CPF Cheque:
@@ -29,7 +70,7 @@
 	<input type='submit' value='Inserir'>
 </form>
 
-<a href="../menuPrincipal.jsp">Home</a>
+<a href="../menuPrincipal.jsp" class="linkVoltar">Menu Principal</a>
 
 </body>
 </html>

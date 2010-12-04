@@ -7,11 +7,12 @@
 <title>Depósito Registrado</title>
 </head>
 <body>
+	<jsp:include page = "../cabecalho.jsp" flush="true" />
 
 	<h4>Depósito Registrado</h4>
 	
 	<p>
-	<a href="visao/menuPrincipal.jsp"> Home </a>
+	<a href="visao/menuPrincipal.jsp" class="linkVoltar"> Menu Principal </a>
 
 </body>
 </html>
