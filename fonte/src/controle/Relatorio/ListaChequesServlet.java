@@ -1,4 +1,4 @@
-package controle;
+package controle.Relatorio;
 
 import java.io.IOException;
 import java.util.List;
@@ -9,8 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import modelo.Cheque;
-import modelo.ChequeDAO;
+import controle.Utilitarios.Utilitarios;
+
+import modelo.Dominio.Cheque;
+import modelo.Persistencia.ChequeDAO;
 
 /**
  * Servlet implementation class ListaChequesServlet

@@ -1,6 +1,8 @@
-package modelo;
+package modelo.Persistencia;
 
 import java.util.List;
+
+import modelo.Dominio.Cliente;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;

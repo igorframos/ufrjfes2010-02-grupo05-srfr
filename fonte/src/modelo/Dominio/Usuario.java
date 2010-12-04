@@ -1,4 +1,4 @@
-package modelo;
+package modelo.Dominio;
 
 public class Usuario {
 	private String cpf;

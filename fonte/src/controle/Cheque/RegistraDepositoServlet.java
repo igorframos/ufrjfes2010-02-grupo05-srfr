@@ -1,4 +1,4 @@
-package controle;
+package controle.Cheque;
 
 import java.io.IOException;
 import java.util.Date;
@@ -9,10 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import modelo.Cheque;
-import modelo.ChequeDAO;
-import modelo.Cliente;
-import modelo.ClienteDAO;
+import controle.Utilitarios.Utilitarios;
+
+import modelo.Dominio.Cheque;
+import modelo.Dominio.Cliente;
+import modelo.Persistencia.ChequeDAO;
+import modelo.Persistencia.ClienteDAO;
 
 /**
  * Servlet implementation class RegistraDepositoServlet

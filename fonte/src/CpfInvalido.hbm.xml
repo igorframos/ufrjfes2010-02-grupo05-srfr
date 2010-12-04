@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="modelo.Dominio">
+
+	<class name="CpfInvalido" table="cpfinvalido">
+	
+		<id name="cpf" column="cpf" type="string" >
+			<generator class="assigned"/>
+		</id>
+		
+	</class>
+	
+</hibernate-mapping>

@@ -1,18 +1,24 @@
-package modelo;
+package modelo.Persistencia;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import modelo.Apresentacao.ChequeVO;
+import modelo.Dominio.Cheque;
+import modelo.Dominio.CpfInvalido;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
-public class UsuarioDAO {
+public class CpfInvalidoDAO {
 
 	private SessionFactory sessaoFactory;
 	
-	public UsuarioDAO() throws Exception {
+	public CpfInvalidoDAO() throws Exception {
 		sessaoFactory = new Configuration().configure().buildSessionFactory();  
     }
 	
@@ -20,11 +26,11 @@ public class UsuarioDAO {
 		sessaoFactory.close();
 	}
 	
-	public void insere(Usuario usuario) throws Exception {
+	public void insere(CpfInvalido cpf) throws Exception {
 		Session sessao = sessaoFactory.openSession();		
 		sessao.beginTransaction();
 		
-		sessao.save(usuario);
+		sessao.save(cpf);
 		
 		sessao.getTransaction().commit();
 		sessao.close();
@@ -34,66 +40,44 @@ public class UsuarioDAO {
 		Session sessao = sessaoFactory.openSession();
 		sessao.beginTransaction();
 		
-		Criteria filtro = sessao.createCriteria(Usuario.class);
+		Criteria filtro = sessao.createCriteria(CpfInvalido.class);
 		
 		List lista = filtro.list();
 		
 		sessao.getTransaction().commit();
 		sessao.close();
 		
-		return lista;	
+		return lista;
 	}
 	
-	public Usuario filtraLogin(String login) {
+	public CpfInvalido filtraCPF(String cpf) {
 		Session sessao = sessaoFactory.openSession();
 		sessao.beginTransaction();
 		
-		Criteria filtro = sessao.createCriteria(Usuario.class);
-		filtro.add(Restrictions.like("login", login));
+		Criteria filtro = sessao.createCriteria(CpfInvalido.class);
+		filtro.add(Restrictions.like("cpf", cpf));
 		
 		List filtrada = filtro.list();
+		
+		sessao.getTransaction().commit();
+		sessao.close();
 		
 		if(filtrada.size() == 0) {
 			return null;
 		}
 		
-		Usuario usuario = (Usuario) filtrada.get(0);
-		
-		return usuario;
+		return (CpfInvalido)filtrada.get(0);
 	}
 	
-	public boolean checaUsuario(String login, String senha) {
+	public void deleta(String cpf) {
 		Session sessao = sessaoFactory.openSession();
 		sessao.beginTransaction();
 		
-		Criteria filtro = sessao.createCriteria(Usuario.class);
-		filtro.add(Restrictions.like("login", login));
+		CpfInvalido cpfI = filtraCPF(cpf);
 		
-		List filtrada = filtro.list();
-		
-		if(filtrada.size() == 0) {
-			return false;
-		}
-		
-		Usuario usuario = (Usuario) filtrada.get(0);
-		
-		if( !usuario.getSenha().equals(senha) ) {
-			return false;
-		}
-		
-		return true;
-	}
-	
-	public void deleta(String login) {
-		Session sessao = sessaoFactory.openSession();
-		sessao.beginTransaction();
-		
-		Usuario usuario = filtraLogin(login);
-		
-		sessao.delete(usuario);
+		sessao.delete(cpfI);
 		
 		sessao.getTransaction().commit();
 		sessao.close();
 	}
-	
 }

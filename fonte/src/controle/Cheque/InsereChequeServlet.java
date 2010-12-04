@@ -1,19 +1,21 @@
-package controle;
+package controle.Cheque;
 
 import java.io.IOException;
 import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import modelo.Cheque;
-import modelo.ChequeDAO;
-import modelo.Cliente;
-import modelo.ClienteDAO;
+import modelo.Dominio.Cheque;
+import modelo.Dominio.Cliente;
+import modelo.Dominio.CpfInvalido;
+import modelo.Persistencia.ChequeDAO;
+import modelo.Persistencia.ClienteDAO;
+import modelo.Persistencia.CpfInvalidoDAO;
+import controle.Utilitarios.Utilitarios;
 
 /**
  * Servlet implementation class InsereChequeServlet
@@ -49,9 +51,6 @@ public class InsereChequeServlet extends HttpServlet {
 			if(cliente == null) {
 				return null;
 			}
-			
-			// Caso contrário, devo checar se ele é confiável
-			// fazer
 			
 			return cliente;
 			
@@ -105,6 +104,27 @@ public class InsereChequeServlet extends HttpServlet {
 
 	}
 	
+	private boolean validaCpf(String cpf) {
+		// Se o cpf não é confiável
+		CpfInvalidoDAO cpfDao;
+		try {
+			cpfDao = new CpfInvalidoDAO();
+			CpfInvalido cpfI = cpfDao.filtraCPF(cpf);
+			cpfDao.encerra();
+			
+			if(cpfI != null) {
+				// Significa que ele tá na "lista negra" de CPFs
+				return false;
+			}
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			return false;
+		}
+		
+		return true;
+	}
+	
 	private boolean validaFormulario(String numero, String cpf, String cnpj, String valorBruto, String valorDescontado, String dataVencimento) {
 		
 		// Se algum campo estiver vazio
@@ -128,6 +148,10 @@ public class InsereChequeServlet extends HttpServlet {
 		Double valorD = Double.parseDouble(valorDescontado);
 		
 		if( valorD > valorB ) {
+			return false;
+		}
+		
+		if(!validaCpf(cpf)) {
 			return false;
 		}
 		
@@ -178,7 +202,8 @@ public class InsereChequeServlet extends HttpServlet {
 				//request.setAttribute("cnpjEmpresa", cnpj);
 				request.getRequestDispatcher("visao/inserirCheque/insereChequeSucesso.jsp").forward(request, response);
 			} else {
-				request.getRequestDispatcher("visao/inserirCheque/insereChequeFalha.jsp").forward(request, response);
+				//request.getRequestDispatcher("visao/inserirCheque/insereChequeFalha.jsp").forward(request, response);
+				response.sendRedirect("visao/inserirCheque/insereChequeForm.jsp");
 			}
 		} else {
 			response.sendRedirect("");

@@ -1,7 +1,10 @@
-package modelo;
+package modelo.Persistencia;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import modelo.Apresentacao.ChequeVO;
+import modelo.Dominio.Cheque;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -53,6 +56,32 @@ public class ChequeDAO {
 		return retorno;
 	}
 	
+	public List<ChequeVO> listar(boolean devolvido) {
+		
+		if(!devolvido) {
+			return listar();
+		}
+		
+		Session sessao = sessaoFactory.openSession();
+		sessao.beginTransaction();
+		
+		Criteria filtro = sessao.createCriteria(Cheque.class);
+		filtro.add(Restrictions.like("devolvido", 1));
+		
+		List<Cheque> lista = filtro.list();
+		
+		sessao.getTransaction().commit();
+		sessao.close();
+		
+		List<ChequeVO> retorno = new ArrayList<ChequeVO>();
+		
+		for (Cheque cheque : lista) {
+			retorno.add(new ChequeVO(cheque));
+		}
+		
+		return retorno;
+	}
+	
 	public Cheque filtraNumero(String numero) {
 		Session sessao = sessaoFactory.openSession();
 		sessao.beginTransaction();
@@ -80,7 +109,33 @@ public class ChequeDAO {
 		
 		Criteria filtro = sessao.createCriteria(Cheque.class);
 		filtro.add(Restrictions.like("cpf", cpf));
-		filtro.addOrder(Order.desc("dataVencimento"));
+		
+		List filtrada = filtro.list();
+		
+		sessao.getTransaction().commit();
+		sessao.close();
+		
+		List<ChequeVO> retorno = new ArrayList<ChequeVO>();
+		
+		for (Object cheque : filtrada) {
+			retorno.add(new ChequeVO((Cheque)cheque));
+		}
+		
+		return retorno;
+	}
+	
+	public List filtraCPF(String cpf, boolean devolvido) {
+		
+		if(!devolvido) {
+			return filtraCPF(cpf);
+		}
+		
+		Session sessao = sessaoFactory.openSession();
+		sessao.beginTransaction();
+		
+		Criteria filtro = sessao.createCriteria(Cheque.class);
+		filtro.add(Restrictions.like("cpf", cpf));
+		filtro.add(Restrictions.like("devolvido", 1));
 		
 		List filtrada = filtro.list();
 		

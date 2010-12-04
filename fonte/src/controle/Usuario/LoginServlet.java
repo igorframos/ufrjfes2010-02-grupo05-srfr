@@ -1,4 +1,4 @@
-package controle;
+package controle.Usuario;
 
 import java.io.IOException;
 
@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import modelo.Usuario;
-import modelo.UsuarioDAO;
+import modelo.Dominio.Usuario;
+import modelo.Persistencia.UsuarioDAO;
 
 /**
  * Servlet implementation class LoginServlet
@@ -71,7 +71,7 @@ public class LoginServlet extends HttpServlet {
 		if (validaUsuario(login, senha)) {
 
 			Cookie cookie = new Cookie("nomeUsuario", login);
-			cookie.setMaxAge(0);
+			cookie.setMaxAge(-1);
 			response.addCookie(cookie);
 			response.sendRedirect("visao/menuPrincipal.jsp");
 		} else {

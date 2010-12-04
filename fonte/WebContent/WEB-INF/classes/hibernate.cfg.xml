@@ -43,6 +43,7 @@
         <mapping resource="Cheque.hbm.xml"/>
 		<mapping resource="Cliente.hbm.xml"/>
 		<mapping resource="Usuario.hbm.xml"/>
+		<mapping resource="CpfInvalido.hbm.xml"/>
 
     </session-factory>
 

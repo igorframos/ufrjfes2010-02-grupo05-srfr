@@ -1,4 +1,4 @@
-package controle;
+package controle.Cliente;
 
 import java.io.IOException;
 
@@ -9,8 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import modelo.Cliente;
-import modelo.ClienteDAO;
+import controle.Utilitarios.Utilitarios;
+
+import modelo.Dominio.Cliente;
+import modelo.Persistencia.ClienteDAO;
 
 /**
  * Servlet implementation class InsereClienteServlet

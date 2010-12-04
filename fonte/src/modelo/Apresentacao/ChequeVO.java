@@ -1,10 +1,12 @@
-package modelo;
+package modelo.Apresentacao;
 
 import java.text.NumberFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import controle.Utilitarios;
+import modelo.Dominio.Cheque;
+
+import controle.Utilitarios.Utilitarios;
 
 
 public class ChequeVO {
