@@ -5,11 +5,29 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Registrar Depósito</title>
+
+<script language="JavaScript">
+	<!--
+	function verificaData()
+	{
+	    var dataExp = /^(\d{2})\/(\d{2})\/(\d{4})$/;
+	    var resultado = document.registraDepositoForm.data.value.match(dataExp);
+	    if (resultado == null) {
+	    	alert("Formato de Data Inválido");
+	    	document.registraDepositoForm.data.value = "";
+	        return false;
+	    } else {
+	    	document.registraDepositoForm.submit();
+	    }
+	}
+	//-->
+</script>
+
 </head>
 <body>
 	<jsp:include page = "../cabecalho.jsp" flush="true" />
 
-	<form action='../../RegistraDepositoServlet' method="post">
+	<form name="registraDepositoForm" action='../../RegistraDepositoServlet' method="post" onsubmit="return verificaData()">
 	
 		<p> Número do Cheque:
 		<input type='text' name='numero'>

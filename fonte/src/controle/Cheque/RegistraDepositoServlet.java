@@ -178,9 +178,9 @@ public class RegistraDepositoServlet extends HttpServlet {
 		
 		if(Utilitarios.usuarioLogado(request)) {
 			if(validaForm(numero, dataDesconto, devolvido)) {
-				request.getRequestDispatcher("/visao/registrarDeposito/registraDepositoSucesso.jsp").forward(request, response);
+				request.getRequestDispatcher("visao/registrarDeposito/registraDepositoSucesso.jsp").forward(request, response);
 			} else {
-				response.sendRedirect("/visao/registrarDeposito/registraDepositoForm.jsp");
+				response.sendRedirect("visao/registrarDeposito/registraDepositoForm.jsp");
 			}
 		} else {
 			response.sendRedirect("");

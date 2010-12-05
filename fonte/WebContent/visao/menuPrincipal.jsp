@@ -46,6 +46,12 @@
 		</tr>
 		
 		<tr>
+			<td>
+			<a href="../ListaClientesServlet" class="menuLink" > Listar Clientes </a>
+			</td>
+		</tr>
+		
+		<tr>
 			<th>
 			Relatórios
 			</th>

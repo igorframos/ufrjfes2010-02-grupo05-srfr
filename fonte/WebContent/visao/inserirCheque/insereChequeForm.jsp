@@ -11,7 +11,7 @@
 	function verificaData()
 	{
 	    var data = /^(\d{2})\/(\d{2})\/(\d{4})$/;
-	    var resultado = document.form1.text1.value.match(data);
+	    var resultado = document.insereChequeForm.dataVencimento.value.match(data);
 	    if (resultado == null) {
 	    	document.insereChequeForm.dataVencimento.value = "";
 	        return false;
@@ -21,7 +21,7 @@
 	}
 	function verificaDecimal()
 	{
-	    var decimal = /^(\d*)\.(\d*)$/;
+	    var decimal = /^(\d*)\.*(\d*)$/;
 	    var resultadoBruto = document.insereChequeForm.valorBruto.value.match(decimal);
 	    var resultadoDescontado = document.insereChequeForm.valorDescontado.value.match(decimal);
 	    if (resultadoBruto == null || resultadoDescontado == null) {
