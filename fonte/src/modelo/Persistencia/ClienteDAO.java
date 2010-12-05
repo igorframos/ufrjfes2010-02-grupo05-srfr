@@ -11,18 +11,38 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
+/**
+ * 
+ * Classe responsável pela interação entre a classe
+ * <b>Cliente</b> do Domínio
+ * e o Banco de Dados
+ *
+ */
 public class ClienteDAO {
 	
 	private SessionFactory sessaoFactory;
 
+	/**
+	 * Construtor, inicia a Sessão com o Hibernate,
+	 * carregando as configurações estabelecidas.
+	 * @throws Exception
+	 */
 	public ClienteDAO() throws Exception {
 		sessaoFactory = new Configuration().configure().buildSessionFactory();  
     }
 	
+	/**
+	 * Encerra a Sessão criada.
+	 */
 	public void encerra() {
 		sessaoFactory.close();
 	}
 	
+	/**
+	 * Insere uma instância de Cliente no Banco de Dados
+	 * @param cheque
+	 * @throws Exception
+	 */
 	public void insere(Cliente cliente) throws Exception {
 		Session sessao = sessaoFactory.openSession();		
 		sessao.beginTransaction();
@@ -33,6 +53,11 @@ public class ClienteDAO {
 		sessao.close();
 	}
 	
+	/**
+	 * Lista todos os clientes do Banco de Dados
+	 * @return Um <b>List</b> de <b>Cliente</b> com todos 
+	 * os clientes do sistema
+	 */
 	public List listar() {
 		Session sessao = sessaoFactory.openSession();
 		sessao.beginTransaction();
@@ -45,6 +70,11 @@ public class ClienteDAO {
 		return lista;
 	}
 	
+	/**
+	 * Lista os Clientes do Banco de Dados com nome que contenha o dado
+	 * @param nome
+	 * @return <b>List</b>
+	 */
 	public List filtraNome(String nome) {
 		Session sessao = sessaoFactory.openSession();
 		sessao.beginTransaction();
@@ -62,6 +92,12 @@ public class ClienteDAO {
 		return filtrada;
 	}
 	
+	/**
+	 * Pega o Cliente com o CNPJ correspondente.
+	 * @param cnpj
+	 * @return Instância de <b>Cliente</b> se o CNPJ existir, <br>
+	 * <b>null</b> senão.
+	 */
 	public Cliente filtraCNPJ(String cnpj) {
 		Session sessao = sessaoFactory.openSession();
 		sessao.beginTransaction();
@@ -83,6 +119,10 @@ public class ClienteDAO {
 		return cliente;
 	}
 	
+	/**
+	 * Retira do BD o cliente correspondente ao CNPJ dado
+	 * @param cnpj
+	 */
 	public void deleta(String cnpj) {
 		Session sessao = sessaoFactory.openSession();
 		sessao.beginTransaction();
@@ -95,6 +135,10 @@ public class ClienteDAO {
 		sessao.close();
 	}
 	
+	/**
+	 * Atualiza um cliente
+	 * @param cliente
+	 */
 	public void atualiza(Cliente cliente) {
 		
 		Session sessao = sessaoFactory.openSession();

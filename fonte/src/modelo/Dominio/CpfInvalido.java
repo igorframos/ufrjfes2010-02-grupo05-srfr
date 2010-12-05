@@ -1,5 +1,9 @@
 package modelo.Dominio;
 
+/**
+ * Classe de Domínio que indica se o cpf é inválido ou não
+ *
+ */
 public class CpfInvalido {
 
 	private String cpf;

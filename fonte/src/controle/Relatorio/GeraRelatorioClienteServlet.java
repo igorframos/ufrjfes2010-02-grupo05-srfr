@@ -14,7 +14,7 @@ import controle.Utilitarios.Utilitarios;
 import modelo.Persistencia.ChequeDAO;
 
 /**
- * Servlet implementation class GeraRelatorioClienteServlet
+ * Servlet responsável por gerar relatórios por Cliente
  */
 @WebServlet("/GeraRelatorioClienteServlet")
 public class GeraRelatorioClienteServlet extends HttpServlet {
@@ -37,6 +37,16 @@ public class GeraRelatorioClienteServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 	}
 
+	/**
+	 * Chama o modelo para pegar um List com todos os cheques,
+	 * dependendo de "devolvidos", retorna todos os cheques do
+	 * cliente ou somente os devolvidos.
+	 * @param cnpj
+	 * @param devolvidos
+	 * @return <b>List</b> com todos os cheques associados ao cliente
+	 * e que satisfaçam as restrições da entrada.
+	 * @throws Exception
+	 */
 	private List pegaChequesCliente(String cnpj, boolean devolvidos)
 			throws Exception {
 

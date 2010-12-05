@@ -8,6 +8,21 @@
 </head>
 <body>
 
+	<%
+		// Testa se já tá logado
+		Cookie biscoitos[] = request.getCookies();
+		
+		if(biscoitos != null) {
+			for(Cookie a : biscoitos) {
+				if( a.getName().equals("nomeUsuario") ) {
+					if( a.getValue() != null ) {
+						response.sendRedirect("visao/menuPrincipal.jsp");
+					}
+				}
+			}
+		} 
+	%>
+
 	<form action='LoginServlet' method="post">
 	
 	<p> Login
@@ -20,8 +35,6 @@
 	<input type="submit" value="Login">
 	
 	</form>
-
-	<a href="visao/menuPrincipal.jsp"> Menu Principal </a>
 	
 </body>
 </html>

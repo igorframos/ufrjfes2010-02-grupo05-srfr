@@ -8,7 +8,15 @@ import modelo.Dominio.Cheque;
 
 import controle.Utilitarios.Utilitarios;
 
-
+/**
+ * 
+ * Classe que visa tornar a apresentação de instâncias de Cheque
+ * mais fácil e clara sem gerar incompatibilidade de tipos com o
+ * banco e nem sobrecarregar o mesmo.
+ * 
+ * @author Leticia
+ *
+ */
 public class ChequeVO {
 
 	private String numero;

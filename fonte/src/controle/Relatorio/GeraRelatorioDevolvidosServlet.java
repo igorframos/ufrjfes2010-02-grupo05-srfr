@@ -14,7 +14,7 @@ import controle.Utilitarios.Utilitarios;
 import modelo.Persistencia.ChequeDAO;
 
 /**
- * Servlet implementation class GeraRelatorioDevolvidosServlet
+ * Servlet responsável por gerar relatórios com cheques devolvidos
  */
 @WebServlet("/GeraRelatorioDevolvidosServlet")
 public class GeraRelatorioDevolvidosServlet extends HttpServlet {

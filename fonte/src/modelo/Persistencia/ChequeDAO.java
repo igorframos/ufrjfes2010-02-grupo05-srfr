@@ -13,18 +13,38 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
+/**
+ * 
+ * Classe responsável pela interação entre a classe
+ * <b>Cheque</b> do Domínio
+ * e o Banco de Dados
+ *
+ */
 public class ChequeDAO {
 
 	private SessionFactory sessaoFactory;
 	
+	/**
+	 * Construtor, inicia a Sessão com o Hibernate,
+	 * carregando as configurações estabelecidas.
+	 * @throws Exception
+	 */
 	public ChequeDAO() throws Exception {
 		sessaoFactory = new Configuration().configure().buildSessionFactory();  
     }
 	
+	/**
+	 * Encerra a Sessão criada.
+	 */
 	public void encerra() {
 		sessaoFactory.close();
 	}
 	
+	/**
+	 * Insere uma instância de Cheque no Banco de Dados
+	 * @param cheque
+	 * @throws Exception
+	 */
 	public void insere(Cheque cheque) throws Exception {
 		Session sessao = sessaoFactory.openSession();		
 		sessao.beginTransaction();
@@ -35,6 +55,11 @@ public class ChequeDAO {
 		sessao.close();
 	}
 	
+	/**
+	 * Lista todos os cheques do Banco de Dados
+	 * @return Um <b>List</b> de <b>ChequeVO</b> com todos 
+	 * os cheques do sistema
+	 */
 	public List<ChequeVO> listar() {
 		Session sessao = sessaoFactory.openSession();
 		sessao.beginTransaction();
@@ -56,6 +81,12 @@ public class ChequeDAO {
 		return retorno;
 	}
 	
+	/**
+	 * Lista os cheques do Banco de Dados de acordo com "devolvido"
+	 * @param devolvido
+	 * @return Um <b>List</b> de <b>ChequeVO</b> que contém todos
+	 * os cheques do BD ou somente os cheques devolvidos.
+	 */
 	public List<ChequeVO> listar(boolean devolvido) {
 		
 		if(!devolvido) {
@@ -82,6 +113,12 @@ public class ChequeDAO {
 		return retorno;
 	}
 	
+	/**
+	 * Pega um Cheque do BD pelo número
+	 * @param numero
+	 * @return <b>Cheque</b> correspondente ao numero da entrada, caso exista. <br>
+	 * <b>null</b> caso contrário.
+	 */
 	public Cheque filtraNumero(String numero) {
 		Session sessao = sessaoFactory.openSession();
 		sessao.beginTransaction();
@@ -103,6 +140,12 @@ public class ChequeDAO {
 		return cheque;
 	}
 	
+	/**
+	 * Lista os cheques correspondentes a um determinado cpf
+	 * @param cpf
+	 * @return <b>List</b> de cheques contendo todos os cheques
+	 * associados à entrada.
+	 */
 	public List filtraCPF(String cpf) {
 		Session sessao = sessaoFactory.openSession();
 		sessao.beginTransaction();
@@ -124,6 +167,14 @@ public class ChequeDAO {
 		return retorno;
 	}
 	
+	/**
+	 * Lista todos os cheques correspondentes ao CPF ou
+	 * só os devolvidos
+	 * @param cpf
+	 * @param devolvido
+	 * @return <b>List</b> contendo todos os cheques do CPF ou só
+	 * os cheques do CPF que foram devolvidos.
+	 */
 	public List filtraCPF(String cpf, boolean devolvido) {
 		
 		if(!devolvido) {
@@ -151,6 +202,11 @@ public class ChequeDAO {
 		return retorno;
 	}
 	
+	/**
+	 * Lista os cheques correspondentes ao CNPJ dado
+	 * @param cnpj
+	 * @return <b>List</b>
+	 */
 	public List filtraCNPJ(String cnpj) {
 		
 		Session sessao = sessaoFactory.openSession();
@@ -173,6 +229,12 @@ public class ChequeDAO {
 		return retorno;
 	}
 	
+	/**
+	 * Lista os cheques correspondentes à entrada
+	 * @param cnpj
+	 * @param devolvidos
+	 * @return <b>List</b>
+	 */
 	public List filtraCNPJ(String cnpj, boolean devolvidos) {
 		
 		if(!devolvidos) {
@@ -200,6 +262,10 @@ public class ChequeDAO {
 		return retorno;	
 	}
 	
+	/**
+	 * Retira do BD o cheque correspondente ao número dado
+	 * @param numero
+	 */
 	public void deleta(String numero) {
 		Session sessao = sessaoFactory.openSession();
 		sessao.beginTransaction();
@@ -212,6 +278,10 @@ public class ChequeDAO {
 		sessao.close();
 	}
 	
+	/**
+	 * Atualiza um cheque
+	 * @param cheque
+	 */
 	public void atualiza(Cheque cheque) {
 		Session sessao = sessaoFactory.openSession();
 		sessao.beginTransaction();

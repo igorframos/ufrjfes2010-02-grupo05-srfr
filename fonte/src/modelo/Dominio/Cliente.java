@@ -1,5 +1,10 @@
 package modelo.Dominio;
 
+/**
+ * Classe de Domínio que possui as propriedades de um
+ * cliente tal qual o idealizado.
+ *
+ */
 public class Cliente {
 	private String cnpj;
 	private String nome;

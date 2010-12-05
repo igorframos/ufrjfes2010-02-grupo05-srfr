@@ -18,7 +18,9 @@ import modelo.Persistencia.CpfInvalidoDAO;
 import controle.Utilitarios.Utilitarios;
 
 /**
- * Servlet implementation class InsereChequeServlet
+ * Servlet responsável por inserir um cheque no Banco de Dados
+ * Verifica se o cliente é confiável, se o cheque possui um formato válido,
+ * e se o cheque já não está no Banco.
  */
 @WebServlet("/InsereChequeServlet")
 public class InsereChequeServlet extends HttpServlet {
@@ -39,6 +41,14 @@ public class InsereChequeServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 	}
 	
+	/**
+	 * Para inserir um cheque no Banco, é preciso que haja um Cliente associado ao Cheque.
+	 * Caso o cliente não conste no Banco de Dados, não é possível
+	 * inserir um cheque associado a ele.
+	 * 
+	 * @param CNPJ
+	 * @return Cliente existente no BD ou <b>null</b>
+	 */
 	private Cliente pegaCliente(String CNPJ) {
 		
 		try {
@@ -46,8 +56,6 @@ public class InsereChequeServlet extends HttpServlet {
 			Cliente cliente = dao.filtraCNPJ(CNPJ);
 			dao.encerra();
 			
-			// Se o cliente não existe no BD, não posso inserir
-			// um cheque relacionado a ele!
 			if(cliente == null) {
 				return null;
 			}
@@ -62,6 +70,15 @@ public class InsereChequeServlet extends HttpServlet {
 		return null;
 	}
 	
+	/**
+	 * O número de um cheque é único. Portanto, se já existir
+	 * um cheque com o número digitado na entrada pelo usuário,
+	 * não posso inserí-lo no Banco.
+	 * 
+	 * @param numero
+	 * @return <b>true</b> se o número não for associado a nenhum cheque do banco de dados,
+	 * <br><b>false</b> senão.
+	 */
 	private boolean validaNumero(String numero) {
 		try {
 			ChequeDAO dao = new ChequeDAO();
@@ -83,12 +100,25 @@ public class InsereChequeServlet extends HttpServlet {
 		return false;
 	}
 	
+	/**
+	 * Chama o modelo para inserir uma instância de Cheque no BD.
+	 * @param cheque
+	 * @throws Exception
+	 */
 	private void insereCheque(Cheque cheque) throws Exception {
 		ChequeDAO dao= new ChequeDAO();
 		dao.insere(cheque);
 		dao.encerra();
 	}
 	
+	/**
+	 * Se o cheque pode ser inserido, então vai aumentar o número
+	 * de operações realizadas com o Cliente associado, portanto,
+	 * tenho que atualizar o Banco de Dados com essas informações.
+	 * 
+	 * @param cliente
+	 * @throws Exception
+	 */
 	private void atualizaCliente(Cliente cliente) throws Exception {
 		
 		ClienteDAO clienteDAO = new ClienteDAO();
@@ -104,6 +134,13 @@ public class InsereChequeServlet extends HttpServlet {
 
 	}
 	
+	/**
+	 * Testa se o CPF não está na lista dos não confiáveis
+	 * (maus pagadores)
+	 * @param cpf
+	 * @return <b>true</b> se o cpf é confiável, <br>
+	 * <b>false</b> senão.
+	 */
 	private boolean validaCpf(String cpf) {
 		// Se o cpf não é confiável
 		CpfInvalidoDAO cpfDao;
@@ -125,6 +162,19 @@ public class InsereChequeServlet extends HttpServlet {
 		return true;
 	}
 	
+	/**
+	 * Valido o formulário de acordo com as regras de negócio.
+	 * 
+	 * @param numero
+	 * @param cpf
+	 * @param cnpj
+	 * @param valorBruto
+	 * @param valorDescontado
+	 * @param dataVencimento
+	 * @return <b> true </b> se a entrada é válida, <br>
+	 * <b>false</b> senão.
+	 * 
+	 */
 	private boolean validaFormulario(String numero, String cpf, String cnpj, String valorBruto, String valorDescontado, String dataVencimento) {
 		
 		// Se algum campo estiver vazio

@@ -15,7 +15,7 @@ import modelo.Dominio.Cheque;
 import modelo.Persistencia.ChequeDAO;
 
 /**
- * Servlet implementation class ListaChequesServlet
+ * Servlet responsável por listar todos os cheques do bd
  */
 @WebServlet("/ListaChequesServlet")
 public class ListaChequesServlet extends HttpServlet {

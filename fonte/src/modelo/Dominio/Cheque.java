@@ -2,6 +2,12 @@ package modelo.Dominio;
 
 import java.util.Date;
 
+/**
+ * 
+ * Classe de Domínio que possui as propriedades de um
+ * cheque tal qual o idealizado.
+ *
+ */
 public class Cheque {
 	private String numero;
 	private Date data_desconto;

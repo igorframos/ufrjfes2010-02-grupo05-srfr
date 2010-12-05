@@ -50,7 +50,6 @@
 <jsp:include page = "../cabecalho.jsp" flush="true" />
 
 <h3>Inserir Cheque</h3>
-<br><br>
 <h4>Dados:</h4>
 
 <form name="insereChequeForm" action='../../InsereChequeServlet' method='POST' onsubmit="return verificaForm()">

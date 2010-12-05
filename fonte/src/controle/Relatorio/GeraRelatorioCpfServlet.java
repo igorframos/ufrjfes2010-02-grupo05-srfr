@@ -14,7 +14,7 @@ import controle.Utilitarios.Utilitarios;
 import modelo.Persistencia.ChequeDAO;
 
 /**
- * Servlet implementation class GeraRelatorioCpfServlet
+ * Servlet responsável por gerar relatórios por CPF
  */
 @WebServlet("/GeraRelatorioCpfServlet")
 public class GeraRelatorioCpfServlet extends HttpServlet {
@@ -37,6 +37,13 @@ public class GeraRelatorioCpfServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 	}
 
+	/**
+	 * Lista os cheques do cpf
+	 * @param cpf
+	 * @param devolvido
+	 * @return <b>List</b> de Cheques que satisfazem a entrada.
+	 * @throws Exception
+	 */
 	private List pegaCheques(String cpf, boolean devolvido) throws Exception {
 
 		ChequeDAO dao = new ChequeDAO();

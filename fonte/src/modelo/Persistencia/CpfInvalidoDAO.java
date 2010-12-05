@@ -14,18 +14,38 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
+/**
+ * 
+ * Classe responsável pela interação entre a classe
+ * <b>CpfInvalido</b> do Domínio
+ * e o Banco de Dados
+ *
+ */
 public class CpfInvalidoDAO {
 
 	private SessionFactory sessaoFactory;
 	
+	/**
+	 * Construtor, inicia a Sessão com o Hibernate,
+	 * carregando as configurações estabelecidas.
+	 * @throws Exception
+	 */
 	public CpfInvalidoDAO() throws Exception {
 		sessaoFactory = new Configuration().configure().buildSessionFactory();  
     }
 	
+	/**
+	 * Encerra a Sessão criada.
+	 */
 	public void encerra() {
 		sessaoFactory.close();
 	}
 	
+	/**
+	 * Insere uma instância de CpfInvalido no Banco de Dados
+	 * @param cpf
+	 * @throws Exception
+	 */
 	public void insere(CpfInvalido cpf) throws Exception {
 		Session sessao = sessaoFactory.openSession();		
 		sessao.beginTransaction();
@@ -36,6 +56,10 @@ public class CpfInvalidoDAO {
 		sessao.close();
 	}
 	
+	/**
+	 * Lista todos os cpfs inválidos cadastrados.
+	 * @return <b>List</b>
+	 */
 	public List listar() {
 		Session sessao = sessaoFactory.openSession();
 		sessao.beginTransaction();
@@ -50,6 +74,12 @@ public class CpfInvalidoDAO {
 		return lista;
 	}
 	
+	/**
+	 * Checa se o cpf dado consta na tabela
+	 * @param cpf
+	 * @return Instância de <b>CpfInvalido</b> se o CPF constar na tabela, <br>
+	 * <b>null</b> senão.
+	 */
 	public CpfInvalido filtraCPF(String cpf) {
 		Session sessao = sessaoFactory.openSession();
 		sessao.beginTransaction();
@@ -69,6 +99,10 @@ public class CpfInvalidoDAO {
 		return (CpfInvalido)filtrada.get(0);
 	}
 	
+	/**
+	 * Deleta cpf da tabela
+	 * @param cpf
+	 */
 	public void deleta(String cpf) {
 		Session sessao = sessaoFactory.openSession();
 		sessao.beginTransaction();

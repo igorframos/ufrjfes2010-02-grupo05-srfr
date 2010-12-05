@@ -18,7 +18,7 @@ import modelo.Persistencia.CpfInvalidoDAO;
 import controle.Utilitarios.Utilitarios;
 
 /**
- * Servlet implementation class RegistraDepositoServlet
+ * Servlet responsável por registrar um depósito
  */
 @WebServlet("/RegistraDepositoServlet")
 public class RegistraDepositoServlet extends HttpServlet {
@@ -38,12 +38,13 @@ public class RegistraDepositoServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	}
-
-	/**
-	 * @throws Exception 
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	
+	/**
+	 * Recupera do banco o cheque associado ao número
+	 * @param numero
+	 * @return instância de <b>Cheque</b> correspondente ao número dado.
+	 * @throws Exception
+	 */
 	private Cheque pegaCheque(String numero) throws Exception {
 		
 		ChequeDAO dao = new ChequeDAO();
@@ -53,6 +54,13 @@ public class RegistraDepositoServlet extends HttpServlet {
 		return cheque;		
 	}
 	
+	/**
+	 * Ao depositar um cheque, diminui o número de operações atuais
+	 * correspondentes a um cliente, portanto, devo atualizar suas
+	 * informações no Banco de Dados.
+	 * @param cnpj
+	 * @throws Exception
+	 */
 	private void atualizaCliente(String cnpj) throws Exception {
 		
 		ClienteDAO dao = new ClienteDAO();
@@ -67,6 +75,12 @@ public class RegistraDepositoServlet extends HttpServlet {
 		dao.atualiza(cliente);
 	}
 	
+	/**
+	 * Inclui o cpf associado ao cheque devolvido na lista de
+	 * cpfs inválidos.
+	 * @param cpf
+	 * @throws Exception
+	 */
 	private void atualizaCpfInvalido(String cpf) throws Exception {
 		CpfInvalidoDAO dao = new CpfInvalidoDAO();
 		
@@ -79,6 +93,12 @@ public class RegistraDepositoServlet extends HttpServlet {
 		}
 	}
 	
+	/**
+	 * Atualiza o Banco de Dado com as informações inseridas
+	 * sobre um cheque
+	 * @param cheque
+	 * @throws Exception
+	 */
 	private void atualizaCheque(Cheque cheque) throws Exception {
 		
 		atualizaCliente(cheque.getCnpj());
@@ -93,6 +113,14 @@ public class RegistraDepositoServlet extends HttpServlet {
 		}
 	}
 	
+	/**
+	 * Valida o form.
+	 * @param numero
+	 * @param dataDesconto
+	 * @param devolvido
+	 * @return <b>true</b> se a entrada é válida,<br>
+	 * <b>false</b> senão.
+	 */
 	private boolean validaForm(String numero, String dataDesconto, int devolvido) {
 		
 		if(numero.equals("") || dataDesconto.equals("") ) {

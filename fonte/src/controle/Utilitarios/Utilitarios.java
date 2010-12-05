@@ -6,8 +6,22 @@ import java.util.Date;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * Classe que implementa métodos úteis a várias outras, para evitar
+ * repetição de trabalho ou imports incorretos, essa Classe agrega
+ * funções variadas e úteis.
+ * 
+ * @author Gabriel
+ * 
+ */
 public class Utilitarios {
 
+	/**
+	 * Verifica se existe um usuário logado no sistema
+	 * @param request
+	 * @return <b>true</b> se existe um usuário logado. <br>
+	 * <b>false</b> senão.
+	 */
 	public static boolean usuarioLogado(HttpServletRequest request) {
 		
 		Cookie biscoitos[] = request.getCookies();
@@ -22,6 +36,12 @@ public class Utilitarios {
 		return false;
 	}
 	
+	/**
+	 * Transforma uma String da forma "dd/mm/aaaa" em uma
+	 * instância de Date
+	 * @param dataString
+	 * @return <b>Date</b> correspondente à String dada
+	 */
 	public static Date stringToDate(String dataString) {
 		
 		String valores[] = dataString.split("/");
@@ -40,6 +60,12 @@ public class Utilitarios {
 		
 	}
 	
+	/**
+	 * Dado uma instância de Date, cria uma String da forma
+	 * "dd/mm/aaaa"
+	 * @param data
+	 * @return <b>String</b> associada ao <b>Date</b> de entrada
+	 */
 	public static String dateToString(Date data) {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(data);

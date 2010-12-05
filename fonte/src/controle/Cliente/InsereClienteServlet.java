@@ -15,7 +15,7 @@ import modelo.Dominio.Cliente;
 import modelo.Persistencia.ClienteDAO;
 
 /**
- * Servlet implementation class InsereClienteServlet
+ * Servlet responsável por inserir um cliente.
  */
 @WebServlet("/InsereClienteServlet")
 public class InsereClienteServlet extends HttpServlet {
@@ -31,6 +31,14 @@ public class InsereClienteServlet extends HttpServlet {
 
 	String msgErro = "";
 
+	/**
+	 * Valida o form, cria uma instância de Cliente e a insere no Banco.
+	 * @param nome
+	 * @param cnpj
+	 * @param endereco
+	 * @param contato
+	 * @return
+	 */
 	boolean valida(String nome, String cnpj, String endereco, String contato) {
 
 		if (nome.equals("") || cnpj.equals("") || endereco.equals("")

@@ -13,7 +13,8 @@ import modelo.Dominio.Usuario;
 import modelo.Persistencia.UsuarioDAO;
 
 /**
- * Servlet implementation class LoginServlet
+ * Implementação do Sistema de Login
+ * Faz a validação do Usuário e o redirecionamento para o menu
  */
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
@@ -36,6 +37,19 @@ public class LoginServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 	}
 
+	/**
+	 * Dados o login e a senha vindos do form, realiza uma consulta
+	 * ao Banco de Dados para ver se os mesmos conferem com os dados
+	 * armazenados. Caso confiram, retorna true, caso contrário, false.
+	 * 
+	 * @param login
+	 * @param senha 
+	 * 
+	 * @return true, se o usuário existir no banco.
+	 * 		   false, caso contrário
+	 * 
+	 * 
+	 */
 	boolean validaUsuario(String login, String senha) {
 		try {
 			UsuarioDAO dao = new UsuarioDAO();

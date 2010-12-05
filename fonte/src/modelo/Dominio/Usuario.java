@@ -1,5 +1,10 @@
 package modelo.Dominio;
 
+/**
+ * Classe de Domínio que possui as propriedades de um
+ * usuário tal qual o idealizado.
+ *
+ */
 public class Usuario {
 	private String cpf;
 	private String primeiro_nome;
