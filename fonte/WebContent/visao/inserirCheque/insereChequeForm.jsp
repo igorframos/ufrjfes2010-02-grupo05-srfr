@@ -33,12 +33,18 @@
 	
 	function verificaForm()
 	{
+		if( !verificaDecimal() ) {
+			alert("O formato das entradas de valor deve ser respeitado");
+			return false;
+		}
+		
+		if( !verificaData() ) {
+			alert("Data no formato inválido");
+			return false;
+		}
+		
 		if( verificaDecimal() && verificaData() ) {
 			document.insereChequeForm.submit();
-		} else {
-			alert("tem coisa errada aí, manolo!");
-			document.insereChequeForm.reset();
-			return false;
 		}
 	}
 	//-->
@@ -54,7 +60,7 @@
 
 <form name="insereChequeForm" action='../../InsereChequeServlet' method='POST' onsubmit="return verificaForm()">
 	<p> Número:
-	<input type='text' name='numero'>
+	<input type='text' name='numero' id="caixaEntrada">
 	<p> CPF Cheque:
 	<input type='text' name='cpf'>
 	<p> CNPJ Empresa:

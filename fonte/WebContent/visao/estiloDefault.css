@@ -91,6 +91,7 @@ a.menuLink:HOVER {
 }
 
 .linkVoltar, .linkVoltar:VISITED {
+	border: 1px solid #CC66CC;
 	display:block;
 	background-color: #FF6699;
 	height:22px;
@@ -105,4 +106,8 @@ a.menuLink:HOVER {
 
 .linkVoltar:HOVER {
 	text-decoration : underline;
+}
+
+input {
+	border: 1px solid #CC66CC;
 }
