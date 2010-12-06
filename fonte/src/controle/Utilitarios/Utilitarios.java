@@ -52,9 +52,11 @@ public class Utilitarios {
 		
 		Calendar hoje = Calendar.getInstance();
 		
-		hoje.set(ano, mes, dia);
+		hoje.set(ano, mes-1, dia);
 		
 		Date data = hoje.getTime();
+		
+		System.out.println(data.toString());
 		
 		return data;
 		
