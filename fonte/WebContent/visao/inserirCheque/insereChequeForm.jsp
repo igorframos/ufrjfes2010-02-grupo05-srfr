@@ -21,7 +21,7 @@
 	}
 	function verificaDecimal()
 	{
-	    var decimal = /^(\d*)\.*(\d*)$/;
+	    var decimal = /^(\d+)\.*(\d*)$/;
 	    var resultadoBruto = document.insereChequeForm.valorBruto.value.match(decimal);
 	    var resultadoDescontado = document.insereChequeForm.valorDescontado.value.match(decimal);
 	    if (resultadoBruto == null || resultadoDescontado == null) {

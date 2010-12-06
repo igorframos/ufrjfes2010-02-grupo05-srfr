@@ -6,7 +6,7 @@
 
 <hibernate-mapping>
 
-	<class name="modelo.Dominio.Cheque" table="cheque">
+	<class name="br.ufrj.fes20102.factoring.modelo.Dominio.Cheque" table="cheque">
 	
 		<id name="numero" column="numero" type="string" >
 			<generator class="assigned"/>
