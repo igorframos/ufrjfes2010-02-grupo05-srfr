@@ -39,7 +39,7 @@ public class InsereClienteServlet extends HttpServlet {
 	 * @param contato
 	 * @return
 	 */
-	boolean valida(String nome, String cnpj, String endereco, String contato) {
+	public boolean valida(String nome, String cnpj, String endereco, String contato) {
 
 		if (nome.equals("") || cnpj.equals("") || endereco.equals("")
 				|| contato.equals("")) {

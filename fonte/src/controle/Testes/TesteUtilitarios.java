@@ -10,6 +10,11 @@ import org.junit.Test;
 
 import controle.Utilitarios.Utilitarios;
 
+/**
+ * 
+ * Classe de Teste associada à classe Utilitários
+ *
+ */
 public class TesteUtilitarios {
 
 	private Calendar cal;
@@ -40,21 +45,14 @@ public class TesteUtilitarios {
 	
 	public boolean datasIguais(Calendar cal1, Calendar cal2) {
 		if(cal1.get(Calendar.DAY_OF_MONTH) != cal2.get(Calendar.DAY_OF_MONTH)) {
-			System.out.println("Dia1: " + cal1.get(Calendar.DAY_OF_MONTH) );
-			System.out.println("Dia2: " + cal2.get(Calendar.DAY_OF_MONTH) );
 			return false;
 		}
 		
 		if(cal1.get(Calendar.MONTH) != cal2.get(Calendar.MONTH)) {
-			System.out.println("Mes1: " + cal1.get(Calendar.MONTH));
-			System.out.println("Mes2: " + cal2.get(Calendar.MONTH));
-			
 			return false;
 		}
 		
 		if(cal1.get(Calendar.YEAR) != cal2.get(Calendar.YEAR)) {
-			System.out.println("Ano1: " + cal1.get(Calendar.YEAR));
-			System.out.println("Ano1: " + cal2.get(Calendar.YEAR));
 			return false;
 		}
 		
@@ -63,7 +61,7 @@ public class TesteUtilitarios {
 	
 	@Test
 	public void testaDataString() {
-		assertTrue("Problema em passar Data para String", Utilitarios.dateToString(hoje).equals("05/12/2010"));
+		assertTrue("Problema em passar Data para String", Utilitarios.dateToString(hoje).equals("06/12/2010"));
 		
 		assertTrue("Problema em passar Data para String", Utilitarios.dateToString(ontem).equals("04/12/2010"));
 		
@@ -79,9 +77,6 @@ public class TesteUtilitarios {
 		
 		Date dataUm = Utilitarios.stringToDate(diaUm);
 		dataTeste.setTime(dataUm);
-		
-		System.out.println(temp.toString());
-		System.out.println(dataTeste.toString());
 		
 		assertTrue("Problema em passar String para Date", datasIguais(dataTeste, temp) );
 		

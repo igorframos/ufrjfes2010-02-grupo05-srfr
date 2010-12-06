@@ -50,7 +50,7 @@ public class LoginServlet extends HttpServlet {
 	 * 
 	 * 
 	 */
-	boolean validaUsuario(String login, String senha) {
+	public boolean validaUsuario(String login, String senha) {
 		try {
 			UsuarioDAO dao = new UsuarioDAO();
 

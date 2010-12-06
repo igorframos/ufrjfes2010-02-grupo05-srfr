@@ -175,7 +175,7 @@ public class InsereChequeServlet extends HttpServlet {
 	 * <b>false</b> senão.
 	 * 
 	 */
-	private boolean validaFormulario(String numero, String cpf, String cnpj, String valorBruto, String valorDescontado, String dataVencimento) {
+	public boolean validaFormulario(String numero, String cpf, String cnpj, String valorBruto, String valorDescontado, String dataVencimento) {
 		
 		// Se algum campo estiver vazio
 		if( numero.equals("") || cpf.equals("") || cnpj.equals("") || valorBruto.equals("") || valorDescontado.equals("") || dataVencimento.equals("") ) {

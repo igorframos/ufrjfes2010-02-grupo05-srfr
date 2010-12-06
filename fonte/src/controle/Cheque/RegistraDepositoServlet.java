@@ -121,7 +121,7 @@ public class RegistraDepositoServlet extends HttpServlet {
 	 * @return <b>true</b> se a entrada é válida,<br>
 	 * <b>false</b> senão.
 	 */
-	private boolean validaForm(String numero, String dataDesconto, int devolvido) {
+	public boolean validaForm(String numero, String dataDesconto, int devolvido) {
 		
 		if(numero.equals("") || dataDesconto.equals("") ) {
 			return false;

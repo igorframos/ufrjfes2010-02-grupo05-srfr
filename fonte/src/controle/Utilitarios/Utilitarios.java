@@ -56,8 +56,6 @@ public class Utilitarios {
 		
 		Date data = hoje.getTime();
 		
-		System.out.println(data.toString());
-		
 		return data;
 		
 	}
