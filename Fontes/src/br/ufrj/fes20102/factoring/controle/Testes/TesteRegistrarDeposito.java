@@ -24,14 +24,14 @@ public class TesteRegistrarDeposito {
 	private RegistraDepositoServlet servlet;
 	private ChequeDAO dao;
 	private Cheque cheque;
-	
+
 	@Before
 	public void prepara() {
 		
 		servlet = new RegistraDepositoServlet();
 		
 		cheque = new Cheque();
-		cheque.setNumero("101");
+		cheque.setNumero("00666");
 		cheque.setCpf("12357");
 		cheque.setCnpj("456");
 		cheque.setData_vencimento(Calendar.getInstance().getTime());
@@ -49,6 +49,7 @@ public class TesteRegistrarDeposito {
 	
 	@After
 	public void limpa() {
+		dao.deleta("00666");
 		dao.encerra();
 	}
 	
@@ -57,7 +58,7 @@ public class TesteRegistrarDeposito {
 		try {
 			dao.insere(cheque);
 			
-			boolean dataErrada = servlet.validaForm("101", "04/12/2010", 0);
+			boolean dataErrada = servlet.validaForm(cheque.getNumero(), "04/11/2010", 0);
 			
 			assertTrue("Problema em validar os dados", (dataErrada == false) );			
 			
