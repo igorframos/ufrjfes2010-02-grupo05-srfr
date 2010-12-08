@@ -1,13 +1,13 @@
 package br.ufrj.fes20102.factoring.controle.Testes;
 
+import com.thoughtworks.selenium.*;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import java.util.regex.Pattern;
 
-import com.thoughtworks.selenium.DefaultSelenium;
-import com.thoughtworks.selenium.SeleneseTestCase;
-
-public class TesteSelenium extends SeleneseTestCase {
+public class TesteInsereClienteSelenium extends SeleneseTestCase {
 	@Before
 	public void setUp() throws Exception {
 		selenium = new DefaultSelenium("localhost", 4444, "*firefox", "http://localhost:8080/") {
@@ -19,10 +19,13 @@ public class TesteSelenium extends SeleneseTestCase {
 	}
 
 	@Test
-	public void testESelenium() throws Exception {
-		selenium.open("/fonte/visao/gerarRelatorioCliente/geraRelatorioClienteForm.jsp");
-		selenium.type("cnpj", "123");
-		selenium.click("//input[@value='Gerar Relatorio']");
+	public void testEInsereClienteSelenium() throws Exception {
+		selenium.open("/fonte/visao/inserirCliente/insereClienteForm.jsp");
+		selenium.type("nome", "Potencial");
+		selenium.type("cnpj", "36729810056732");
+		selenium.type("endereco", "Rua Arlindo Santana 45");
+		selenium.type("contato", "contato@potencial.com");
+		selenium.click("//input[@value='Inserir']");
 		selenium.waitForPageToLoad("30000");
 	}
 
