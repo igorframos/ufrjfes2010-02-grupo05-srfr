@@ -19,7 +19,7 @@
 		<input type="checkbox" name="devolvidos" value="Devolvidos">
 		
 		<p>
-		<input type="submit" value="Gerar Relatório">
+		<input type="submit" value="Gerar Relatorio">
 	
 	</form>
 	
