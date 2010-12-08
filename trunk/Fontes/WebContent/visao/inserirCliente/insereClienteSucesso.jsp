@@ -11,7 +11,7 @@
 
 	<h4>Cliente inserido com sucesso</h4>
 	
-	<a href="../menuPrincipal.jsp" class="linkVoltar">Menu Principal</a>
+	<a href="visao/menuPrincipal.jsp" class="linkVoltar">Menu Principal</a>
 
 </body>
 </html>

@@ -25,9 +25,9 @@ public class ChequeVO {
 	private String data_vencimento;
 	private String taxa_desconto;
 	private String taxa_efetiva;
-	private double valor_bruto;
-	private double valor_descontado;
-	private double receita;
+	private String valor_bruto;
+	private String valor_descontado;
+	private String receita;
 	private String CPF;
 	private String CNPJ;
 	private String vencido;
@@ -40,8 +40,6 @@ public class ChequeVO {
 	
 	public ChequeVO(Cheque cheque) {
 		this.numero = cheque.getNumero();
-		this.valor_bruto = cheque.getValor_bruto();
-		this.valor_descontado = cheque.getValor_descontado();
 		this.CPF = cheque.getCpf();
 		this.CNPJ = cheque.getCnpj();		
 		this.data_vencimento = Utilitarios.dateToString(cheque.getData_vencimento());
@@ -73,18 +71,23 @@ public class ChequeVO {
 			this.devolvido = "Não";
 		}
 		
-		// Setando receita e taxas
+		// Setando receita, valores e taxas
 		NumberFormat nf = NumberFormat.getInstance();
 		
 		nf.setMaximumFractionDigits(4);
 		
-		double taxaDesconto = (1 - valor_descontado/valor_bruto) * 100;
+		double taxaDesconto = (1 - cheque.getValor_descontado()/cheque.getValor_bruto()) * 100;
 		this.taxa_desconto = nf.format(taxaDesconto) + "%";
 		
-		double taxaEfetiva = (valor_bruto/valor_descontado - 1) * 100;
+		double taxaEfetiva = (cheque.getValor_bruto()/cheque.getValor_descontado() - 1) * 100;
 		this.taxa_efetiva = nf.format(taxaEfetiva) + "%";
 		
-		this.receita = valor_bruto - valor_descontado;
+		nf.setMinimumFractionDigits(2);
+		nf.setMaximumFractionDigits(2);
+		
+		this.valor_bruto = "R$ " + nf.format(cheque.getValor_bruto());
+		this.valor_descontado = "R$ " + nf.format(cheque.getValor_descontado());
+		this.receita = "R$ " + nf.format(cheque.getValor_bruto() - cheque.getValor_descontado());
 	}
 
 	public String getNumero() {
@@ -127,28 +130,28 @@ public class ChequeVO {
 		this.taxa_efetiva = taxa_efetiva;
 	}
 
-	public double getValor_bruto() {
+	public String getValor_bruto() {
 		return valor_bruto;
 	}
 
-	public void setValor_bruto(double valor_bruto) {
+	public void setValor_bruto(String valor_bruto) {
 		this.valor_bruto = valor_bruto;
 	}
 
-	public double getValor_descontado() {
+	public String getValor_descontado() {
 		return valor_descontado;
 	}
 
-	public void setValor_descontado(double valor_descontado) {
+	public void setValor_descontado(String valor_descontado) {
 		this.valor_descontado = valor_descontado;
 	}
 
-	public double getReceita() {
+	public String getReceita() {
 		return receita;
 	}
 
 	public void setReceita(double receita) {
-		this.receita = receita;
+		this.receita = receita + "";
 	}
 
 	public String getCPF() {

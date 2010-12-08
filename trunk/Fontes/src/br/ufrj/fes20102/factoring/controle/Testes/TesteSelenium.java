@@ -1,10 +1,11 @@
 package br.ufrj.fes20102.factoring.controle.Testes;
 
-import com.thoughtworks.selenium.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import java.util.regex.Pattern;
+
+import com.thoughtworks.selenium.DefaultSelenium;
+import com.thoughtworks.selenium.SeleneseTestCase;
 
 public class TesteSelenium extends SeleneseTestCase {
 	@Before

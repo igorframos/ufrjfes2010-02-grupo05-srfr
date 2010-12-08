@@ -52,6 +52,11 @@ public class LoginServlet extends HttpServlet {
 	 * 
 	 */
 	public boolean validaUsuario(String login, String senha) {
+		
+		if (senha.equals("") || login.equals("")) {
+			return false;
+		}
+		
 		try {
 			UsuarioDAO dao = new UsuarioDAO();
 
