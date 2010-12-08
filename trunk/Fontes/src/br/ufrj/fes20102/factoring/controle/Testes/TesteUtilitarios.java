@@ -25,9 +25,6 @@ public class TesteUtilitarios {
 	private Date mesPassado;
 	
 	private String diaUm;
-	private String diaDois;
-	private String diaTres;
-	
 	@Before
 	public void prepara() {
 		
@@ -63,8 +60,7 @@ public class TesteUtilitarios {
 	
 	@Test
 	public void testaDataString() {
-		System.out.println(hoje);
-		System.out.println(Utilitarios.dateToString(hoje));
+
 		assertTrue("Problema em passar Data para String", Utilitarios.dateToString(hoje).equals("06/12/2010"));
 		
 		assertTrue("Problema em passar Data para String", Utilitarios.dateToString(ontem).equals("04/12/2010"));

@@ -60,7 +60,7 @@ public class TesteRegistrarDeposito {
 			
 			boolean dataErrada = servlet.validaForm(cheque.getNumero(), "04/11/2010", 0);
 			
-			assertTrue("Problema em validar os dados", (dataErrada == false) );			
+			assertTrue("Problema em validar os dados", (dataErrada == false) );
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
