@@ -7,6 +7,11 @@ import org.junit.Before;
 import org.junit.Test;
 import java.util.regex.Pattern;
 
+/**
+ * 
+ * Teste usando o Selenium que insere um novo cliente
+ *
+ */
 public class TesteInsereClienteSelenium extends SeleneseTestCase {
 	@Before
 	public void setUp() throws Exception {
