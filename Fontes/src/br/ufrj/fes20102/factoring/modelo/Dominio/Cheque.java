@@ -4,9 +4,9 @@ import java.util.Date;
 
 /**
  * 
- * Classe de Domínio que possui as propriedades de um
- * cheque tal qual o idealizado.
- *
+ * Classe de Domínio que possui as propriedades de um cheque tal qual o
+ * idealizado.
+ * 
  */
 public class Cheque {
 	private String numero;
@@ -17,44 +17,55 @@ public class Cheque {
 	private String cpf;
 	private String cnpj;
 	private int devolvido;
-	
+
 	public Cheque() {
-		
+
 	}
-	
+
 	public String getNumero() {
 		return numero;
 	}
+
 	public void setNumero(String numero) {
 		this.numero = numero;
 	}
+
 	public Date getData_desconto() {
 		return data_desconto;
 	}
+
 	public void setData_desconto(Date data_desconto) {
 		this.data_desconto = data_desconto;
 	}
+
 	public Date getData_vencimento() {
 		return data_vencimento;
 	}
+
 	public void setData_vencimento(Date data_vencimento) {
 		this.data_vencimento = data_vencimento;
 	}
+
 	public String getCpf() {
 		return cpf;
 	}
+
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
+
 	public int getDevolvido() {
 		return devolvido;
 	}
+
 	public void setDevolvido(int devolvido) {
 		this.devolvido = devolvido;
 	}
+
 	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
 	}
+
 	public String getCnpj() {
 		return cnpj;
 	}
@@ -74,6 +85,5 @@ public class Cheque {
 	public void setValor_descontado(double valor_descontado) {
 		this.valor_descontado = valor_descontado;
 	}
-	
-	
+
 }

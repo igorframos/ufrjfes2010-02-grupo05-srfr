@@ -12,8 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import br.ufrj.fes20102.factoring.controle.Utilitarios.Utilitarios;
 import br.ufrj.fes20102.factoring.modelo.Persistencia.ChequeDAO;
 
-
-
 /**
  * Servlet responsável por gerar relatórios por CPF
  */
@@ -40,6 +38,7 @@ public class GeraRelatorioCpfServlet extends HttpServlet {
 
 	/**
 	 * Lista os cheques do cpf
+	 * 
 	 * @param cpf
 	 * @param devolvido
 	 * @return <b>List</b> de Cheques que satisfazem a entrada.
@@ -50,7 +49,7 @@ public class GeraRelatorioCpfServlet extends HttpServlet {
 		ChequeDAO dao = new ChequeDAO();
 
 		List cheques = dao.filtraCPF(cpf, devolvido);
-		
+
 		return cheques;
 	}
 

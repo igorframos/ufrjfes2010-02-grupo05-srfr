@@ -12,8 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import br.ufrj.fes20102.factoring.controle.Utilitarios.Utilitarios;
 import br.ufrj.fes20102.factoring.modelo.Persistencia.ChequeDAO;
 
-
-
 /**
  * Servlet responsável por gerar relatórios com cheques devolvidos
  */
@@ -36,14 +34,14 @@ public class GeraRelatorioDevolvidosServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+
 		if (Utilitarios.usuarioLogado(request)) {
 			List cheques;
 
 			try {
 				ChequeDAO dao = new ChequeDAO();
 				cheques = dao.listar(true);
-				
+
 				request.setAttribute("cheques", cheques);
 				request.getRequestDispatcher(
 						"visao/gerarRelatorioDevolvidos/exibeRelatorioDevolvidos.jsp")

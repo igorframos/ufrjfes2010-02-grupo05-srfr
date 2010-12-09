@@ -7,16 +7,14 @@ import java.util.Date;
 import br.ufrj.fes20102.factoring.controle.Utilitarios.Utilitarios;
 import br.ufrj.fes20102.factoring.modelo.Dominio.Cheque;
 
-
-
 /**
  * 
- * Classe que visa tornar a apresentação de instâncias de Cheque
- * mais fácil e clara sem gerar incompatibilidade de tipos com o
- * banco e nem sobrecarregar o mesmo.
+ * Classe que visa tornar a apresentação de instâncias de Cheque mais fácil e
+ * clara sem gerar incompatibilidade de tipos com o banco e nem sobrecarregar o
+ * mesmo.
  * 
  * @author Leticia
- *
+ * 
  */
 public class ChequeVO {
 
@@ -32,62 +30,66 @@ public class ChequeVO {
 	private String CNPJ;
 	private String vencido;
 	private String devolvido;
-	
-	
+
 	public ChequeVO() {
-		
+
 	}
-	
+
 	public ChequeVO(Cheque cheque) {
 		this.numero = cheque.getNumero();
 		this.CPF = cheque.getCpf();
-		this.CNPJ = cheque.getCnpj();		
-		this.data_vencimento = Utilitarios.dateToString(cheque.getData_vencimento());
-		
+		this.CNPJ = cheque.getCnpj();
+		this.data_vencimento = Utilitarios.dateToString(cheque
+				.getData_vencimento());
+
 		// Setando a data de Desconto, se ela tiver sido cadastrada
 		Date dataDesconto = cheque.getData_desconto();
-		
-		if(dataDesconto != null) {
+
+		if (dataDesconto != null) {
 			this.data_desconto = Utilitarios.dateToString(dataDesconto);
-			
+
 		} else {
 			this.data_desconto = "-/-/-";
 		}
-		
+
 		// Setando se o cheque está vencido
 		Calendar cal = Calendar.getInstance();
 		Date hoje = cal.getTime();
-		
-		if(hoje.compareTo(cheque.getData_vencimento()) != -1) {
+
+		if (hoje.compareTo(cheque.getData_vencimento()) != -1) {
 			this.vencido = "Sim";
 		} else {
 			this.vencido = "Não";
 		}
-		
+
 		// Setando se o cheque foi devolvido
-		if(cheque.getDevolvido() == 1) {
+		if (cheque.getDevolvido() == 1) {
 			this.devolvido = "Sim";
 		} else {
 			this.devolvido = "Não";
 		}
-		
+
 		// Setando receita, valores e taxas
 		NumberFormat nf = NumberFormat.getInstance();
-		
+
 		nf.setMaximumFractionDigits(4);
-		
-		double taxaDesconto = (1 - cheque.getValor_descontado()/cheque.getValor_bruto()) * 100;
+
+		double taxaDesconto = (1 - cheque.getValor_descontado()
+				/ cheque.getValor_bruto()) * 100;
 		this.taxa_desconto = nf.format(taxaDesconto) + "%";
-		
-		double taxaEfetiva = (cheque.getValor_bruto()/cheque.getValor_descontado() - 1) * 100;
+
+		double taxaEfetiva = (cheque.getValor_bruto()
+				/ cheque.getValor_descontado() - 1) * 100;
 		this.taxa_efetiva = nf.format(taxaEfetiva) + "%";
-		
+
 		nf.setMinimumFractionDigits(2);
 		nf.setMaximumFractionDigits(2);
-		
+
 		this.valor_bruto = "R$ " + nf.format(cheque.getValor_bruto());
 		this.valor_descontado = "R$ " + nf.format(cheque.getValor_descontado());
-		this.receita = "R$ " + nf.format(cheque.getValor_bruto() - cheque.getValor_descontado());
+		this.receita = "R$ "
+				+ nf.format(cheque.getValor_bruto()
+						- cheque.getValor_descontado());
 	}
 
 	public String getNumero() {
@@ -185,6 +187,5 @@ public class ChequeVO {
 	public void setDevolvido(String devolvido) {
 		this.devolvido = devolvido;
 	}
-	
-	
+
 }
