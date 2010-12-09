@@ -10,14 +10,16 @@ import java.util.regex.Pattern;
 /**
  * 
  * Teste usando o Selenium que insere um novo cliente
- *
+ * 
  */
 public class TesteInsereClienteSelenium extends SeleneseTestCase {
 	@Before
 	public void setUp() throws Exception {
-		selenium = new DefaultSelenium("localhost", 4444, "*firefox", "http://localhost:8080/") {
+		selenium = new DefaultSelenium("localhost", 4444, "*firefox",
+				"http://localhost:8080/") {
 			public void open(String url) {
-				commandProcessor.doCommand("open", new String[] {url, "true"});
+				commandProcessor
+						.doCommand("open", new String[] { url, "true" });
 			}
 		};
 		selenium.start();

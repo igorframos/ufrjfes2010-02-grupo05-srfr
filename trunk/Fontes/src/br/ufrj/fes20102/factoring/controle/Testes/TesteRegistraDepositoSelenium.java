@@ -10,14 +10,16 @@ import java.util.regex.Pattern;
 /**
  * 
  * Teste utilizando o Selenium que registra um depósito que não foi devolvido
- *
+ * 
  */
 public class TesteRegistraDepositoSelenium extends SeleneseTestCase {
 	@Before
 	public void setUp() throws Exception {
-		selenium = new DefaultSelenium("localhost", 4444, "*firefox", "http://localhost:8080/") {
+		selenium = new DefaultSelenium("localhost", 4444, "*firefox",
+				"http://localhost:8080/") {
 			public void open(String url) {
-				commandProcessor.doCommand("open", new String[] {url, "true"});
+				commandProcessor
+						.doCommand("open", new String[] { url, "true" });
 			}
 		};
 		selenium.start();

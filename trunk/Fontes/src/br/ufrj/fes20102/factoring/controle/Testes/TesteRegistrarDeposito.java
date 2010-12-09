@@ -62,7 +62,7 @@ public class TesteRegistrarDeposito {
 			assertTrue("Problema em validar os dados", (dataErrada == false));
 
 			cheque.setData_desconto(Calendar.getInstance().getTime());
-			
+
 			dao.atualiza(cheque);
 
 			boolean jaDescontado = servlet.validaForm("00666", "10/10/2011", 0);

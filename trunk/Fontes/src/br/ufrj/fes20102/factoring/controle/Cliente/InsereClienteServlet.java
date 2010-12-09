@@ -13,8 +13,6 @@ import br.ufrj.fes20102.factoring.controle.Utilitarios.Utilitarios;
 import br.ufrj.fes20102.factoring.modelo.Dominio.Cliente;
 import br.ufrj.fes20102.factoring.modelo.Persistencia.ClienteDAO;
 
-
-
 /**
  * Servlet responsável por inserir um cliente.
  */
@@ -34,13 +32,15 @@ public class InsereClienteServlet extends HttpServlet {
 
 	/**
 	 * Valida o form, cria uma instância de Cliente e a insere no Banco.
+	 * 
 	 * @param nome
 	 * @param cnpj
 	 * @param endereco
 	 * @param contato
 	 * @return
 	 */
-	public boolean valida(String nome, String cnpj, String endereco, String contato) {
+	public boolean valida(String nome, String cnpj, String endereco,
+			String contato) {
 
 		if (nome.equals("") || cnpj.equals("") || endereco.equals("")
 				|| contato.equals("")) {
@@ -92,14 +92,15 @@ public class InsereClienteServlet extends HttpServlet {
 		String contato = request.getParameter("contato");
 
 		// Se o cara tá logado
-		if(Utilitarios.usuarioLogado(request)) {
+		if (Utilitarios.usuarioLogado(request)) {
 			if (valida(nome, cnpj, endereco, contato)) {
 				request.getRequestDispatcher(
-						"visao/inserirCliente/insereClienteSucesso.jsp").forward(
-						request, response);
+						"visao/inserirCliente/insereClienteSucesso.jsp")
+						.forward(request, response);
 			} else {
 				if (!msgErro.equals("")) {
-					Cookie cookie = new Cookie("mensagemErroInsereCliente", msgErro);
+					Cookie cookie = new Cookie("mensagemErroInsereCliente",
+							msgErro);
 					cookie.setMaxAge(10);
 					response.addCookie(cookie);
 				}
@@ -108,7 +109,6 @@ public class InsereClienteServlet extends HttpServlet {
 		} else {
 			response.sendRedirect("");
 		}
-		
 
 	}
 

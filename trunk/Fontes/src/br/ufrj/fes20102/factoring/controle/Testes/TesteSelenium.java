@@ -9,17 +9,18 @@ import java.util.regex.Pattern;
 
 /**
  * 
- * Teste utilizando o Selenium
- * Neste teste, um cliente e um cheque são inseridos.
- * Depois é registrado o depósito desse cheque como devolvido
- *
+ * Teste utilizando o Selenium Neste teste, um cliente e um cheque são
+ * inseridos. Depois é registrado o depósito desse cheque como devolvido
+ * 
  */
 public class TesteSelenium extends SeleneseTestCase {
 	@Before
 	public void setUp() throws Exception {
-		selenium = new DefaultSelenium("localhost", 4444, "*firefox", "http://localhost:8080/") {
+		selenium = new DefaultSelenium("localhost", 4444, "*firefox",
+				"http://localhost:8080/") {
 			public void open(String url) {
-				commandProcessor.doCommand("open", new String[] {url, "true"});
+				commandProcessor
+						.doCommand("open", new String[] { url, "true" });
 			}
 		};
 		selenium.start();
