@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
  * Teste utilizando o Selenium que registra um depósito que não foi devolvido
  *
  */
-public class TesteRegistraDeposito1Selenium extends SeleneseTestCase {
+public class TesteRegistraDepositoSelenium extends SeleneseTestCase {
 	@Before
 	public void setUp() throws Exception {
 		selenium = new DefaultSelenium("localhost", 4444, "*firefox", "http://localhost:8080/") {
