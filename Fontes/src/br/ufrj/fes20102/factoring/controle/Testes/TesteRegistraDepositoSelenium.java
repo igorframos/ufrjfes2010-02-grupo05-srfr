@@ -28,9 +28,10 @@ public class TesteRegistraDepositoSelenium extends SeleneseTestCase {
 	@Test
 	public void testERegistraDeposito1Selenium() throws Exception {
 		selenium.open("/fonte/visao/registrarDeposito/registraDepositoForm.jsp");
-		selenium.type("numero", "3");
+		selenium.type("numero", "0000");
 		selenium.type("data", "17/08/2029");
 		selenium.click("//input[@value='Registrar']");
+		
 		selenium.waitForPageToLoad("30000");
 	}
 

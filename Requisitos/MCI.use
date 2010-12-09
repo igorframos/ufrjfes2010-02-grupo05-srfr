@@ -34,27 +34,53 @@ attributes
   cpf : String
   cnpj : String
   data_desconto : Date
-  data_vencimento : Date
-  dias_a_decorrer : Integer
-  taxa_desconto : Float
-  valor_descontado : Float
-  taxa_efetiva : Float
+  dataVencimento : Date
+  diasDecorrer : Integer
+  taxaDesconto : Float
+  valorDescontado : Float
+  taxaEfetiva : Float
   receita : Float
   vencido : Boolean
   devolvido : Boolean
+end
+
+-- Tipos de Dados
+class Date
+attributes
+  dia : Integer
+  mes : Integer
+  ano : Integer
+end
+
+class Float
 end
 
 
 -- Associações
 
 association InsereCheque between
-  Cliente[1] role inserindo
+  Usuario[1] role inserindo
   Cheque[1] role adicionado
 end
 
 association RegistraDeposito between
-  Cliente[1] role registrando
+  Usuario[1] role registrando
   Cheque[1] role depositado
+end
+
+association GeraRelatorio between
+  Usuario[1] role pedido
+  Cheque[0..*] role gerados
+end
+
+association InsereCliente between
+  Usuario[1] role inserindo
+  Cliente[1] role inserido
+end
+
+association ListaCliente between
+  Usuario[1] role pedido
+  Cliente[0..*] role listados
 end
 
 association Possui between
@@ -68,11 +94,14 @@ end
 constraints
 
 
-context Cliente
-inv Cliente1:
+context Usuario
+inv Usuario1:
   primeiroNome.isDefined() and ultimoNome.isDefined() and idade > 0 and cpf.isDefined()
 
+context Cliente
+inv Cliente1:
+  razaoSocial.isDefined() and cnpj.isDefined()  
   
 context Cheque
 inv Cheque1:
-  id.isDefined() and dataVencimento.isDefined()
+  numero.isDefined() and dataVencimento.isDefined()

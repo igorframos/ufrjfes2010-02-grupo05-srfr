@@ -28,8 +28,10 @@ public class TesteInserirCheque {
 		cheque = new Cheque();
 		cheque.setNumero("101");
 		cheque.setCpf("123");
-		cheque.setCnpj("456");
-		cheque.setData_vencimento(Calendar.getInstance().getTime());
+		cheque.setCnpj("33.041.260/0299-01");
+		Calendar calendario = Calendar.getInstance();
+		calendario.set(2010, 12, 9);
+		cheque.setData_vencimento(calendario.getTime());
 		cheque.setValor_bruto(98.74);
 		cheque.setValor_descontado(90.5);
 
@@ -70,12 +72,12 @@ public class TesteInserirCheque {
 
 		assertTrue("Problema em validar os dados", (faltandoInfo == false));
 
-		boolean dadosErrados = servlet.validaFormulario("12345", "123", "456",
-				"10", "20", "06/12/2010");
+		boolean dadosErrados = servlet.validaFormulario("12345", "123",
+				"33.041.260/0299-01", "10", "20", "06/12/2010");
 
 		assertTrue("Problema em validar os dados", (dadosErrados == false));
 
-		boolean clienteInexistente = servlet.validaFormulario("12345", "9",
+		boolean clienteInexistente = servlet.validaFormulario("12345", "123",
 				"cliente que nao existe", "80", "70", "06/12/2010");
 
 		assertTrue("Problema em validar os dados",
