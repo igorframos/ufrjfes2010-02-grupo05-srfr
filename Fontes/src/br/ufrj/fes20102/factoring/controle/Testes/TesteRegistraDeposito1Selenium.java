@@ -1,6 +1,7 @@
 package br.ufrj.fes20102.factoring.controle.Testes;
 
 import com.thoughtworks.selenium.*;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -8,10 +9,10 @@ import java.util.regex.Pattern;
 
 /**
  * 
- * Teste utilizando o Selenium que lista todos os cheques de um cliente
+ * Teste utilizando o Selenium que registra um depósito que não foi devolvido
  *
  */
-public class TesteListaChequesClientesSelenium extends SeleneseTestCase {
+public class TesteRegistraDeposito1Selenium extends SeleneseTestCase {
 	@Before
 	public void setUp() throws Exception {
 		selenium = new DefaultSelenium("localhost", 4444, "*firefox", "http://localhost:8080/") {
@@ -23,10 +24,11 @@ public class TesteListaChequesClientesSelenium extends SeleneseTestCase {
 	}
 
 	@Test
-	public void testEListaChequesClientes() throws Exception {
-		selenium.open("/fonte/visao/gerarRelatorioCliente/geraRelatorioClienteForm.jsp");
-		selenium.type("cnpj", "123");
-		selenium.click("//input[@value='Gerar Relatorio']");
+	public void testERegistraDeposito1Selenium() throws Exception {
+		selenium.open("/fonte/visao/registrarDeposito/registraDepositoForm.jsp");
+		selenium.type("numero", "3");
+		selenium.type("data", "17/08/2029");
+		selenium.click("//input[@value='Registrar']");
 		selenium.waitForPageToLoad("30000");
 	}
 
